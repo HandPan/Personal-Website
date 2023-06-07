@@ -1,9 +1,3 @@
-$('document').ready(function () {
-    $('.icon').click(function () {
-        $('nav ul').toggleClass('show');
-    });
-});
-
 function validateBanner() {
     if (document.forms[0].bFirst.value == "") {
         alert('Your name exists');

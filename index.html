@@ -19,9 +19,10 @@
     <script src="js/script.js"></script>
     <script src="js/jQueryScript.js"></script>
 
-
 </head>
-<body>
+<body data-bs-spy="scroll" data-bs-target=".navbar">
+    <div id="tablet-indicator"></div>
+    <div id="mobile-indicator"></div>
     <div id="wrapper">
         <header>
             <!-- hamburger -->
@@ -29,59 +30,58 @@
             <div class="logo">
                 <h1><a href="index.html">Roger Jacobsen | Home</a></h1>
             </div>
-            <nav>
+            <nav class="navbar">
                 <ul>
-                    <li><a href="index.html">Home</a></li>
+                    <!-- <li><a href="index.html">Home</a></li>
                     <li><a href="blog.html">Blog</a></li>
                     <li><a href="about.html">About</a></li>
                     <li><a href="contact.html">Contact</a></li>
-                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="gallery.html">Gallery</a></li> -->
+                    <li>Home<a href="#section1"></a></li>
+                    <li>About<a href="section2"></a></li>
                 </ul>
             </nav>
         </header>
-        <div class="clearfix"></div>
-        <div class="banner">
-            <img src="images/Krivan-Peak-Reduced.jpg" alt="Mountain">
-            <div class="container-fluid">
-                <div class="banner-text">
-                    <h1 class="fw-bold">Roger Jacobsen</h1>
-                    <hr id="banner-bar">
-                    <div class="dev-texts">
-                        <p class="fw-bold" id="dev-text0">
-                            Software Engineer
-                        </p>
-                        <p class="fw-bold" id="dev-text1">
-                            Front End Developer
-                        </p>
-                        <p class="fw-bold" id="dev-text2">
-                            Graphic Designer
-                        </p>
-                        <p class="fw-bold" id="dev-text3">
-                            Game Programmer
-                        </p>
-                    </div>
 
-                    <!-- <div class="container bg-dark">
-                        <div class="carousel-inner">
-                            <div class="carousel-item">
-                                <div class="carousel-caption">
-                                    <p>Software Engineer</p>
-                                </div>
-                            </div>
-                            <div class="carousel-item">
-                                <div class="carousel-caption">
-                                    <p>Front End Developer</p>
-                                </div>
+        <main>
+            <div id="section1">
+                <div class="clearfix"></div>
+                <div class="banner">
+                    <img src="images/Krivan-Peak-Reduced.jpg" alt="Mountain">
+                    <div class="container-fluid">
+                        <div class="banner-text">
+                            <h1 class="fw-bold">Roger Jacobsen</h1>
+                            <div class="dev-texts center">
+                                <hr id="banner-bar">
+                                <p class="fw-bold" id="dev-text0">
+                                    Software Engineer
+                                </p>
+                                <p class="fw-bold" id="dev-text1">
+                                    Front End Developer
+                                </p>
+                                <p class="fw-bold" id="dev-text2">
+                                    Graphic Designer
+                                </p>
+                                <p class="fw-bold" id="dev-text3">
+                                    Video Game Programmer
+                                </p>
                             </div>
                         </div>
+                    </div>
+                </div>
+                <div class="inverted-banner-wrapper">
+                    <!-- <div class="inverted-banner">
                     </div> -->
+                    <img src="images/Krivan-Peak-Reduced-Inverted-Cropped2.jpg" alt="Mountain Reflection">
                 </div>
+                <!-- <img src="images/Krivan-Peak-Reduced-Inverted.jpg" alt="Mountain Reflection" class="inverted-banner"> -->
             </div>
-        </div>
-        <main>
-            <div class="inverted-banner-wrapper">
-                <div class="inverted-banner">
-                </div>
+
+            <div id="section2">
+                <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam harum dicta amet molestias suscipit repudiandae vel quod tenetur, porro voluptate ipsa! Optio asperiores, quaerat facere iure dolorum sit assumenda suscipit.</h1>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae numquam soluta, et error cumque ducimus consequuntur unde explicabo repellendus quae nostrum. Ab facere odio repellat. Adipisci, nulla autem. Iure, sint?</p>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptas recusandae dolores voluptate incidunt, praesentium dolor non magnam soluta natus, et ratione id sint ut aliquid temporibus corrupti dolorum impedit perspiciatis?</p>
+                <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem vel reprehenderit error magnam itaque, ea perferendis hic dolor tempore quo tempora distinctio doloribus corporis totam nostrum dignissimos, laborum similique temporibus doloremque voluptatem. Error alias, laboriosam expedita sunt ratione obcaecati totam! Dignissimos aut provident inventore est nihil suscipit! Consequatur, aliquam a.</h1>
             </div>
         </main>
     </div>

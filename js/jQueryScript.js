@@ -16,6 +16,10 @@ $('document').ready(function () {
 
 // let i = 0;
 
+function isTabletWidth() {
+    return $('#tablet-indicator').is(':visible');
+}
+
 $(document).ready(function () {
         const l = $('.dev-texts p');
         // console.log(l.length);
@@ -24,6 +28,7 @@ $(document).ready(function () {
 
 function rotatingSkills(i, l) {
     // console.log(i);
+    // isTabletWidth();
     // console.log(textWidth);
 
     // $('#banner-bar').animate({width: $('#dev-text' + i).width() + 50}, 'slow', function(){
@@ -39,15 +44,26 @@ function rotatingSkills(i, l) {
     //     })
     //     // .delay(2000);
     // });
-
-    $('#banner-bar').animate({width: $('#dev-text' + i).width()}, 'slow', function(){
-        $('#banner-bar').height('3px');
+    if (isTabletWidth()) {
+        $('#banner-bar').height('3px').width('100%');
         $('#dev-text' + i).slideDown(1000)
         .delay(2000)
         .slideUp(1000, function(){
             $('#banner-bar').height('6px');
             rotatingSkills((i+1) % l, l);
         })
-        // .delay(2000);
-    });
+    }
+
+    if (!isTabletWidth()) {
+        $('#banner-bar').animate({width: $('#dev-text' + i).width()}, 'slow', function(){
+            $('#banner-bar').height('3px');
+            $('#dev-text' + i).slideDown(1000)
+            .delay(2000)
+            .slideUp(1000, function(){
+                $('#banner-bar').height('6px');
+                rotatingSkills((i+1) % l, l);
+            })
+            // .delay(2000);
+        });
+    }
 }

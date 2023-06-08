@@ -36,6 +36,15 @@
     clear: both;
 }
 
+/* info */
+#tablet-indicator {
+    display: none;
+}
+
+#mobile-indicator {
+    display: none;
+}
+
 header {
     width: 100%;
     text-align: center;
@@ -43,6 +52,7 @@ header {
     background: linear-gradient(to right, #6d544d, #5c7474);
     position: fixed;
     top: 0;
+    z-index: 1;
 }
 
 .logo {
@@ -141,7 +151,9 @@ nav ul li a:hover {
 
 .dev-texts {
     /* position: static; */
-
+    /* position: fixed; */
+    /* height: fit-content; */
+    /* width: fit-content; */
     /* border: 2px solid blue; */
 }
 
@@ -161,10 +173,10 @@ body {
     font-size: 20px;
 }
 
-main {
+/* main {
     width: 100%;
     margin: auto;
-}
+} */
 
 .box1 {
     height: 50vh;
@@ -179,19 +191,50 @@ main {
     height: 50vh;
     width: 100%;
     background-image: url(../images/Krivan-Peak-Reduced.jpg);
+    background-repeat: no-repeat;
     background-position: center;
     background-attachment: fixed;
     display: table;
+}
+
+.inverted-banner-wrapper {
+    position: relative;
+    
+}
+
+.inverted-banner-wrapper::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.5));
+}
+
+.inverted-banner-wrapper img {
+    width: 100%;
+    height: 100%;
+    position: static;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    z-index: -1;
 }
 
 .inverted-banner {
     width: 100%;
     height: 60vh;
     background-size: cover;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.5)), url(../images/Krivan-Peak-Reduced-Inverted.jpg);
+    /* background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.5)), url(../images/Krivan-Peak-Reduced-Inverted.jpg); */
+    background-repeat: no-repeat;
     position: absolute;
     overflow: hidden;
     z-index: -1;
+}
+
+#section2 {
+    background-color: red;
 }
 
 footer {
@@ -237,6 +280,11 @@ footer {
 }
 
 @media(max-width:1425px) {
+    /* info */
+    #tablet-indicator {
+        display: block;
+    }
+
     /* header */
     .logo {
         float: none;
@@ -267,8 +315,35 @@ footer {
         text-align: center;
     }
 
-    .banner-text p {
+    .center {
+        width: 50%;
+        margin: auto;
         text-align: center;
+    }
+
+    .banner-text hr {
+        background-color: black !important;
+        height: 5px;
+        /* width: 50%; */
+        opacity: 1;
+        padding: 0;
+        margin: 0;
+        margin-top: 10px;
+    }
+    
+    .banner-text p {
+        display: none;
+        /* width: 50%; */
+        font-size: 40px;
+        /* text-decoration: overline; */
+        margin: 0;
+        padding: 0;
+        padding-bottom: 5px;
+        position: static;
+        height: auto;
+        width: auto;
+        white-space: nowrap;
+        border-bottom: 3px solid black;
     }
 
     /* main */
@@ -293,6 +368,11 @@ footer {
 }
 
 @media(max-width:750px) {
+    /* info */
+    #mobile-indicator {
+        display: block;
+    }
+
     /* header */
     .logo {
         float: none;

@@ -31,9 +31,15 @@
     background-color: black;
     border-color: black;
 } */
-
+/* 
 .clearfix {
     clear: both;
+} */
+
+.clearfix::after {
+    content: '';
+    clear: both;
+    display: table;
 }
 
 /* info */
@@ -89,6 +95,7 @@ nav {
     /* top: 0; */
     /* border: 3px solid red; */
     /* z-index: 1; */
+    /* border-bottom: 2px solid black; */
 }
 
 nav ul {
@@ -110,7 +117,7 @@ nav ul li {
     display: block;
     padding: 5px 30px;
     text-decoration: none;
-    color: black;
+    color: black !important;
     /* font-size: 30px; */
     font-weight: bold;
     border-left: 2px solid rgba(0, 0, 0, 0);
@@ -120,7 +127,9 @@ nav ul li {
 }
 
 .nav-link:hover {
-    color: #d8cac9;
+    border-color: black;
+    border-radius: 0;
+    /* color: #d8cac9; */
     /* transition: 0.5s; */
 }
 
@@ -130,8 +139,12 @@ nav ul li {
     /* border-right: 2px solid black; */
     border-color: black;
     /* font-size: 31px; */
-    border-radius: 7%;
+    border-radius: 10%;
     
+}
+
+.active:hover {
+    border-radius: 10%;
 }
 
 nav ul li a {
@@ -274,7 +287,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.5));
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.9));
 }
 
 .inverted-banner-wrapper img {
@@ -289,23 +302,178 @@ body {
 
 .inverted-banner {
     width: 100%;
-    height: 60vh;
+    /* height: 60vh; */
     background-size: cover;
-    /* background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.5)), url(../images/Krivan-Peak-Reduced-Inverted.jpg); */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.9)), url(../images/Krivan-Peak-Reduced-Inverted.jpg);
     background-repeat: no-repeat;
-    position: absolute;
+    background-size: 100%;
+    /* position: absolute; */
     overflow: hidden;
     z-index: -1;
 }
 
 #section2 {
     /* background-color: red; */
-    /* margin-top: 50vh; */
+    /* width: 100vw; */
+    margin: 20px;
+    margin-top: 400px;
     padding: 20px;
-    background-color: #574240;
+    /* padding: 25px; */
+    /* background-color: #574240; */
     text-align: center;
     color: black;
-    border-top: 3px solid #959980;
+    /* color: #F4686A; */
+    /* color: rgba(50, 60, 50, 0.9) !important; */
+    /* text-shadow: #6d544d 1px 1px 2px; */
+    /* border-top: 3px solid #959980; */
+    /* background: linear-gradient(to right, #6d544d, #5c7474); */
+
+    /* background-color: #CBD0B5; */
+    /* border: 3px solid black; */
+    /* box-shadow: 0 10px 60px rgba(0, 0, 0, 0.5); */
+    border-radius: 10px;
+    position: relative;
+    /* float: left; */
+    /* background-color: #CBD0B5; */
+    /* display: ; */
+    /* background-size: cover; */
+    /* background-image: url(media\Seneca_at_night_-_Late_night_city_vibes.gif); */
+    /* background-image: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)); */
+}
+
+.about-border {
+    /* border: 3px solid black; */
+    /* box-shadow: 0 10px 60px rgba(0, 0, 0, 0.5); */
+    /* border-radius: 5px; */
+    padding: 20px;
+    margin-right: 13vw;
+    margin-left: 13vw;
+}
+
+.about {
+    /* background-image: url("../images/Custom-rulled-paper.PNG"); */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(../images/Custom-rulled-paper.PNG);
+    background-repeat: no-repeat;
+    background-size: cover;
+    border: 3px solid black;
+    /* border: 5px solid red; */
+    /* width: 75%; */
+    /* display: block; */
+    /* width: fit-content; */
+    /* margin-right: 20vw; */
+    margin-right: 8vw;
+    /* margin-left: 15vw; */
+    padding: 20px;
+    /* background-color: #74615e; */
+    /* background-color: #CBD0B5; */
+    /* background-color: #574240; */
+    /* background: linear-gradient(to right, #6d544d, #5c7474); */
+    /* position: relative; */
+    /* float: left; */
+    /* position: absolute; */
+    border-radius: 5px;
+    /* box-shadow: 0 10px 60px rgba(0, 0, 0, 0.5); */
+    /* box-shadow: 6px 6px 10px rgba(0, 0, 0, 0.9); */
+    
+    /* width: 75%; */
+    
+}
+
+.title-bar {
+    /* box-shadow: 0 10px 60px rgba(0, 0, 0, 0.5); */
+    /* border-radius: 5px; */
+    padding: 20px;
+    /* background-color: #574240; */
+    /* box-shadow: 0 10px 60px rgba(0, 0, 0, 0.5); */
+    margin: 20px auto;
+    /* margin: auto; */
+    /* border: 3px solid black; */
+    /* border-top: 3px linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.9)); */
+    /* border-bottom: 3px solid linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.9)); */
+    border-top: 3px solid black;
+    border-bottom: 3px solid black;
+    /* border-left: 3px solid black; */
+    /* border-right: 3px solid black; */
+    backdrop-filter: blur(1px);
+    /* border-radius: 5px; */
+    width: 75%;
+    /* text-align: center; */
+    /* color: black; */
+    /* border-top: 3px solid #959980; */
+    /* border-bottom: 3px outset #959980; */
+
+    > h1 {
+        /* color: rgba(50, 60, 50, 0.9); */
+        /* padding: 325px; */
+        margin: auto;
+        /* width: 100%; */
+        text-align: center;
+        font-size: 50px;
+        font-weight: bold;
+        /* text-decoration: underline; */
+        /* text-shadow: #6d544d 1px 1px 2px; */
+    }
+
+}
+
+.text-field {
+    padding: 20px;
+    /* border: 3px solid black; */
+    /* margin: auto 5vw auto 10vw; */
+    /* background-color: #574240; */
+    /* background: linear-gradient(to right, #6d544d, #5c7474); */
+    /* margin: 40px auto; */
+    /* box-shadow: 0 10px 60px rgba(0, 0, 0, 0.5); */
+    border-radius: 10px;
+    position: relative;
+    /* position: absolute; */
+    /* right: 50px; */
+    width: 70%;
+    margin-left: 10px;
+    /* text-align: center; */
+    /* color: black; */
+    /* border-top: 3px solid #959980; */
+    /* width: 50%; */
+    float: left;
+    /* width: 75%; */
+}
+
+.text-field h1 {
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.image-field {
+    /* border: 3px solid black; */
+    /* background-image: url("images\20160229_120556.jpg"); */
+    width: fit-content;
+    /* margin-top: auto; */
+    /* height: auto; */
+    /* height: 30%; */
+    /* display: inline-block; */
+    /* margin: 40px auto; */
+    /* box-shadow: 0 10px 60px rgba(0, 0, 0, 0.5); */
+    box-shadow: 6px 6px 10px rgba(0, 0, 0, 0.9);
+    border-radius: 5px;
+    /* top: 50vh; */
+    /* position: relative; */
+    position: absolute;
+    top: 50%;
+    left: 60%;
+    transform: translate(0, -38.5%);
+    padding: 0;
+    /* margin: auto 10vw auto 5vw; */
+    float: right;
+    /* width: 25%; */
+    /* z-index: 2; */
+}
+
+.image-field img {
+    /* position: relative; */
+    /* right: 50px; */
+    border: 3px solid black;
+    border-radius: 5px;
+    width: 23vw;
 }
 
 footer {

@@ -304,12 +304,17 @@ body {
     width: 100%;
     /* height: 60vh; */
     background-size: cover;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.9)), url(../images/Krivan-Peak-Reduced-Inverted.jpg);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.5)), url(../images/Krivan-Peak-Increased-Inverted.png);
     background-repeat: no-repeat;
     background-size: 100%;
     /* position: absolute; */
     overflow: hidden;
     z-index: -1;
+}
+
+.inverted-banner::after {
+    /* background-image: none; */
+    /* background-color: rgba(7, 11, 13, 255); */
 }
 
 #section2 {
@@ -341,14 +346,72 @@ body {
     /* background-image: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)); */
 }
 
+.title-bar {
+    /* box-shadow: 0 10px 60px rgba(0, 0, 0, 0.5); */
+    /* border-radius: 5px; */
+    padding: 20px;
+    /* background-color: #574240; */
+    /* box-shadow: 0 10px 60px rgba(0, 0, 0, 0.5); */
+    margin: 0 auto;
+    margin-top: 20px;
+    /* margin: auto; */
+    /* border: 3px solid black; */
+    /* border-top: 3px linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.9)); */
+    /* border-bottom: 3px solid linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.9)); */
+    border-top: 3px solid black;
+    /* border-bottom: 3px solid black; */
+    /* border-left: 3px solid black; */
+    /* border-right: 3px solid black; */
+    /* border: 2px solid #959980; */
+    backdrop-filter: blur(1px);
+    /* border-radius: 5px; */
+    /* width: 75%; */
+    /* text-align: center; */
+    /* color: black; */
+    /* border-top: 3px solid #959980; */
+    /* border-bottom: 3px outset #959980; */
+    transition: 0.4s;
+    /* -webkit-transition: transition none; */
+
+
+    > h1 {
+        /* color: rgba(50, 60, 50, 0.9); */
+        /* padding: 325px; */
+        margin: auto;
+        /* width: 100%; */
+        text-align: center;
+        font-size: 50px;
+        font-weight: bold;
+        /* text-decoration: underline; */
+        /* text-shadow: #6d544d 1px 1px 2px; */
+    }
+
+}
+
+.title-bar:hover {
+    /* background-color: #574240; */
+    /* background-color: rgba(87, 66, 64, 0.5); */
+    /* border: 2px solid #574240; */
+    border-radius: 10px;
+    /* transition: 0.4s; */
+}
+
+.notransition {
+    transition: none;
+}
+
 .about-border {
     /* border: 3px solid black; */
     /* box-shadow: 0 10px 60px rgba(0, 0, 0, 0.5); */
     /* border-radius: 5px; */
     padding: 20px;
+    /* padding-left: 3vw; */
+    /* padding-right: 3vw; */
     margin-right: 13vw;
     margin-left: 13vw;
+    border-bottom: 3px solid black;
 }
+
 
 .about {
     /* background-image: url("../images/Custom-rulled-paper.PNG"); */
@@ -379,42 +442,6 @@ body {
     
 }
 
-.title-bar {
-    /* box-shadow: 0 10px 60px rgba(0, 0, 0, 0.5); */
-    /* border-radius: 5px; */
-    padding: 20px;
-    /* background-color: #574240; */
-    /* box-shadow: 0 10px 60px rgba(0, 0, 0, 0.5); */
-    margin: 20px auto;
-    /* margin: auto; */
-    /* border: 3px solid black; */
-    /* border-top: 3px linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.9)); */
-    /* border-bottom: 3px solid linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.9)); */
-    border-top: 3px solid black;
-    border-bottom: 3px solid black;
-    /* border-left: 3px solid black; */
-    /* border-right: 3px solid black; */
-    backdrop-filter: blur(1px);
-    /* border-radius: 5px; */
-    width: 75%;
-    /* text-align: center; */
-    /* color: black; */
-    /* border-top: 3px solid #959980; */
-    /* border-bottom: 3px outset #959980; */
-
-    > h1 {
-        /* color: rgba(50, 60, 50, 0.9); */
-        /* padding: 325px; */
-        margin: auto;
-        /* width: 100%; */
-        text-align: center;
-        font-size: 50px;
-        font-weight: bold;
-        /* text-decoration: underline; */
-        /* text-shadow: #6d544d 1px 1px 2px; */
-    }
-
-}
 
 .text-field {
     padding: 20px;
@@ -444,6 +471,8 @@ body {
 }
 
 .image-field {
+    /* border-top: 3px solid black; */
+    /* border-bottom: 3px solid black; */
     /* border: 3px solid black; */
     /* background-image: url("images\20160229_120556.jpg"); */
     width: fit-content;
@@ -473,7 +502,12 @@ body {
     /* right: 50px; */
     border: 3px solid black;
     border-radius: 5px;
+    /* box-shadow: 6px 6px 10px rgba(0, 0, 0, 0.9); */
     width: 23vw;
+}
+
+#section3 {
+    /* background-color: rgba(7, 11, 13, 255); */
 }
 
 footer {

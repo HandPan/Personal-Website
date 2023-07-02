@@ -23,7 +23,8 @@ function isTabletWidth() {
 $(document).ready(function () {
         const l = $('.dev-texts p');
         // console.log(l.length);
-        rotatingSkills(0, l.length);       
+        rotatingSkills(0, l.length);
+        infoBoxSlider();
 });
 
 function rotatingSkills(i, l) {
@@ -64,6 +65,52 @@ function rotatingSkills(i, l) {
                 rotatingSkills((i+1) % l, l);
             })
             // .delay(2000);
+        });
+    }
+}
+
+$(document).ready(function () {
+    $("#title-bar0").width($("#view0").width());
+});
+
+function infoBoxSlider() {
+    let isOpen = true;
+    if (!isTabletWidth()) {
+        $("#title-bar0").click(function (e) { 
+            // console.log("Clicked");
+            // console.log(isOpen);
+            if (isOpen) {
+                $("#absimage").slideUp(1000, function() {
+                    // $("#title-bar0").css("transition", "none");
+                    $("#view0").slideUp(1000, function() {
+                        // $("#title-bar0").css({
+                        //     // "transition": "0s",
+                        //     "border-bottom": "3px solid black"
+                        //     // "border-radius": "0px"
+                        // });
+                        $("#title-bar0").addClass("notransition")
+                        .css("border-bottom", "3px solid black");
+                        $("#title-bar0")[0].offsetHeight; // Have to flush css annoying. Thank you Mark
+                        $("#title-bar0").removeClass("notransition");
+                    });
+                    // $("#title-bar0").css("transition", "0.4s");
+                    isOpen = false;
+                });
+            }
+
+            if (!isOpen) {
+                $("#title-bar0").css({
+                    "border-bottom": "none"
+                    // "border-radius": "10px",
+                    // "transition": "0.4s"
+                });
+                $("#view0").slideDown(1000, function() {
+                    $("#absimage").slideDown(1000);
+                    isOpen = true;
+                });
+            }
+            e.preventDefault();
+            
         });
     }
 }

@@ -70,7 +70,7 @@ function rotatingSkills(i, l) {
 }
 
 $(document).ready(function () {
-    $("#title-bar0").width($("#view0").width());
+    $("#title-bar0").width($("#view0").width()).css("border-radius", "10px");
 });
 
 function infoBoxSlider() {
@@ -81,33 +81,30 @@ function infoBoxSlider() {
             // console.log(isOpen);
             if (isOpen) {
                 $("#absimage").slideUp(1000, function() {
-                    // $("#title-bar0").css("transition", "none");
                     $("#view0").slideUp(1000, function() {
-                        // $("#title-bar0").css({
-                        //     // "transition": "0s",
-                        //     "border-bottom": "3px solid black"
-                        //     // "border-radius": "0px"
-                        // });
                         $("#title-bar0").addClass("notransition")
-                        .css("border-bottom", "3px solid black");
+                        .css("border-bottom", "3px solid black")
+                        ;
                         $("#title-bar0")[0].offsetHeight; // Have to flush css annoying. Thank you Mark
                         $("#title-bar0").removeClass("notransition");
-                    });
-                    // $("#title-bar0").css("transition", "0.4s");
+                        // $("#title-bar0").css("border-radius", "0px");
+                        $("#title-bar0").css("border-radius", "");
+                    })
+                    ;
                     isOpen = false;
                 });
             }
 
             if (!isOpen) {
                 $("#title-bar0").css({
-                    "border-bottom": "none"
-                    // "border-radius": "10px",
+                    "border-bottom": "none",
+                    "border-radius": "10px"
                     // "transition": "0.4s"
                 });
                 $("#view0").slideDown(1000, function() {
                     $("#absimage").slideDown(1000);
                     isOpen = true;
-                });
+                }).css("border-radius", "10px");
             }
             e.preventDefault();
             

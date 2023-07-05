@@ -25,6 +25,7 @@ $(document).ready(function () {
         // console.log(l.length);
         rotatingSkills(0, l.length);
         infoBoxSlider();
+        arrowControls();
 });
 
 function rotatingSkills(i, l) {
@@ -70,7 +71,12 @@ function rotatingSkills(i, l) {
 }
 
 $(document).ready(function () {
-    $("#title-bar0").width($("#view0").width()).css("border-radius", "10px");
+    $("#title-bar0").width($("#view0").width()).css("border-radius", "10px")
+    // $(".content").height(($("#title-bar0").height() + 45));
+    // console.log(($("#title-bar0").height() + 200) + 'px');
+    // $('#content').css(height, (($("#title-bar0").height())));
+    // $("#section2").css("position", "relative");
+
 });
 
 function infoBoxSlider() {
@@ -110,4 +116,32 @@ function infoBoxSlider() {
             
         });
     }
+}
+
+function arrowControls() {
+    $('#left-arrow').click(function (e) { 
+        // console.log("Left");
+        $('#section2')
+        .slideUp(1000, function() {
+            $(".content").height(($("#title-bar0").height() + 45));
+
+        })
+        .css("position", "absolute")
+        .animate({
+            right: "200%"
+        })
+
+        $('#section3').animate({
+            right: "200%"
+        })
+        // .css("position", "relative")
+        ;
+        e.preventDefault();
+        
+    });
+    $('#right-arrow').click(function (e) { 
+        // console.log("Right");
+        e.preventDefault();
+        
+    });
 }

@@ -317,18 +317,30 @@ body {
     /* background-color: rgba(7, 11, 13, 255); */
 }
 
-.content {
+#content-wrapper {
+    margin: 0;
+    padding: 0;
+    margin-top: 400px;
+    padding-top: 70px;
+}
+
+#content {
     /* margin: 0; */
     /* padding: 0; */
-    overflow: hidden;
     position: relative;
+    overflow: hidden;
+    /* position: absolute; */
+    /* width: 100%; */
     margin: 20px;
-    margin-top: 400px;
     padding: 20px;
     /* height: 500px; */
+    /* float: left; */
     box-shadow: 0 10px 60px rgba(0, 0, 0, 0.5);
     border-radius: 10px;
     /* border: 3px solid black; */
+    /* display: flex; */
+    /* justify-content: space-around; */
+
 
 }
 
@@ -344,7 +356,11 @@ body {
     /* align-items: stretch; */
 }
 
-#section2 {
+#active-section {
+    position: relative !important;
+}
+
+#section0 {
     /* background-color: red; */
     /* width: 100vw; */
     /* margin: 20px; */
@@ -356,13 +372,15 @@ body {
     /* left: 25%; */
     text-align: center;
     color: black;
-    left: 0;
-    right: 0;
+    /* left: 0; */
+    /* right: 0; */
     /* position: absolute; */
     position: relative;
+    /* left: 400%; */
+    /* margin-left: -100%; */
     /* margin: auto; */
     /* margin-left: 140%; */
-    /* float: left; */
+    float: left;
     /* left: 40%; */
     /* color: #F4686A; */
     /* color: rgba(50, 60, 50, 0.9) !important; */
@@ -468,7 +486,10 @@ body {
     padding: 20px;
     /* background-color: #574240; */
     /* box-shadow: 0 10px 60px rgba(0, 0, 0, 0.5); */
-    margin: 0 auto;
+    /* margin: 0 auto; */
+    margin-right: 13vw;
+    margin-left: 13vw;
+    position: relative;
     /* margin-top: 20px; */
     /* margin: auto; */
     /* border: 3px solid black; */
@@ -627,14 +648,26 @@ body {
     width: 23vw;
 }
 
-#section3 {
+#section1 {
     /* background-color: rgba(7, 11, 13, 255); */
-    position: absolute;
-    /* position: relative; */
+    /* background-color: red; */
+    /* position: absolute; */
+    position: relative;
     /* margin-left: 200%; */
-    /* float: left; */
+    float: left;
     /* right: 100%; */
-    left: 200%;
+    left: 100%;
+    margin-right: -100%;
+    /* width: 0; */
+    /* color: black; */
+}
+
+#section4 {
+    position: relative;
+    float: left;
+    right: 200%;
+    /* margin-left: -200% */
+
 }
 
 footer {

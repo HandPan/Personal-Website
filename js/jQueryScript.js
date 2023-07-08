@@ -16,6 +16,11 @@ $('document').ready(function () {
 
 // let i = 0;
 
+// Globals
+let isSliderOpen = true;
+let curViewNumber = 0;
+const views = [0, 1];
+
 function isTabletWidth() {
     return $('#tablet-indicator').is(':visible');
 }
@@ -24,7 +29,8 @@ $(document).ready(function () {
         const l = $('.dev-texts p');
         // console.log(l.length);
         rotatingSkills(0, l.length);
-        infoBoxSlider();
+        // infoBoxSlider(curViewNumber);
+        setUpTitleBars();
         arrowControls();
 });
 
@@ -81,7 +87,99 @@ $(document).ready(function () {
 
 });
 
-function infoBoxSlider() {
+function setUpTitleBars() {
+    views.forEach(viewNum => {
+        $('#title-bar' + viewNum).click(function (e) { 
+            e.preventDefault();
+
+            infoBoxSlider(viewNum);
+        });
+    });
+}
+
+function infoBoxSlider(viewNum) {
+    // Check for extraneous values that don't exist
+    if (Math.abs(viewNum) > 3) {
+        return;
+    }
+        
+    console.log('#view' + viewNum); // Debug
+    const shift = (-1 * 100) + '%';
+    console.log($('#section1').css("left"));
+    console.log("calc(" + $('#section1').css('left') + " + " + shift + ")");
+    $('#section1').css("left", "calc(" + $('#section1').css('left') + " + " + shift + ")");
+    console.log($('#section1').css("left"));
+
+
+    // Close view
+    if (isSliderOpen) {
+        if (viewNum === 0) {
+            $('#absimage').slideUp(1000, function() {
+                $('#view' + viewNum).slideUp(1000, function() {
+                    $('#title-bar' + viewNum).css({
+                        "border-bottom": "3px solid black",
+                        "border-radius": ""
+                    });
+                });
+            });
+        }
+
+        if (viewNum != 0) {
+            $('#view' + viewNum).slideUp(1000, function() {
+                $('#title-bar' + viewNum).css({
+                    "border-bottom": "3px solid black",
+                    "border-radius": ""
+                });
+            });
+        }
+
+
+
+        isSliderOpen = false;
+    }
+
+    // Open view
+    else if (!isSliderOpen) {
+        $('#title-bar' + viewNum).css({
+            "border-bottom": "",
+            "border-radius": "10px"
+        });
+        
+        if (viewNum === 0) {
+            $('#view' + viewNum).slideDown(1000, function() {
+                $('#absimage').slideDown(1000);
+            });
+        }
+
+        if (viewNum != 0) {
+            $('#view' + viewNum).slideDown(1000);
+        }
+
+        isSliderOpen = true;
+    }
+
+}
+
+function slideController(moveVal) {
+    // Check for extraneous values that don't exist
+    if (Math.abs(viewNum) > 3) {
+        return;
+    }
+
+    // Close view
+    if (isSliderOpen) {
+        infoBoxSlider(curViewNumber);
+    }
+
+    const targetView = curViewNumber + moveVal;
+    const shift = (moveVal * 100) + '%';
+
+
+    $('#section0').animate({left: $('#section0').css("left") + shift}, 1000);
+
+}
+
+function infoBoxSlgider() {
     let isOpen = true;
     if (!isTabletWidth()) {
         $("#title-bar0").click(function (e) { 
@@ -123,19 +221,17 @@ function infoBoxSlider() {
 function arrowControls() {
     $('#left-arrow').click(function (e) { 
         // console.log("Left");
-        $('#view0').slideUp(1000, function() {
-            $('#section0').animate({right: '200%', marginLeft: '-100%'}, 1000);
-            $('#section1').animate({left: '', marginRight: ''}, 1000);
-        });
+        $('#section0').animate({right: '100%', marginLeft: '-100%'}, 1000);
+        $('#section1').animate({left: '0', marginRight: '0'}, 1000);
+        curViewNumber = 1;
         e.preventDefault();
         
     });
     $('#right-arrow').click(function (e) { 
         // console.log("Right");
         $('#section1').animate({left: '100%', marginRight: '-100%'}, 1000);
-        $('#section0').animate({right: '', marginLeft: ''}, 1000, function() {
-            $('#view0').slideDown(1000);
-        });
+        $('#section0').animate({right: '0', marginLeft: '0'}, 1000);
+        curViewNumber = 0;
         e.preventDefault();
         
     });

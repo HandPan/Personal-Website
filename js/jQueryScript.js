@@ -92,24 +92,27 @@ function setUpTitleBars() {
         $('#title-bar' + viewNum).click(function (e) { 
             e.preventDefault();
 
-            infoBoxSlider(viewNum);
+            infoBoxSlider(viewNum, null);
         });
     });
 }
 
-function infoBoxSlider(viewNum) {
+function infoBoxSlider(viewNum, callback) {
     // Check for extraneous values that don't exist
     if (Math.abs(viewNum) > 3) {
         return;
     }
         
-    console.log('#view' + viewNum); // Debug
-    const shift = (-1 * 100) + '%';
-    console.log($('#section1').css("left"));
-    console.log("calc(" + $('#section1').css('left') + " + " + shift + ")");
-    $('#section1').css("left", "calc(" + $('#section1').css('left') + " + " + shift + ")");
-    console.log($('#section1').css("left"));
-
+    // console.log('#view' + viewNum); // Debug
+    // const shift = (-1 * 100) + '%';
+    // console.log($('#section1').css("left"));
+    // console.log("calc(" + $('#section1').css('left') + " + " + shift + ")");
+    // $('#section1').css("left", "calc(" + $('#section1').css('left') + " + " + shift + ")");
+    
+    // console.log(`calc(${$('#section1').css('left')} + ${shift})`);
+    // $('#section1').css("left", `calc(${$('#section1').css('left')} + ${shift})`);
+    // console.log($('#section1').css("left"));
+    
 
     // Close view
     if (isSliderOpen) {
@@ -120,6 +123,9 @@ function infoBoxSlider(viewNum) {
                         "border-bottom": "3px solid black",
                         "border-radius": ""
                     });
+                    if (callback != null) {
+                        callback();
+                    }
                 });
             });
         }
@@ -130,14 +136,16 @@ function infoBoxSlider(viewNum) {
                     "border-bottom": "3px solid black",
                     "border-radius": ""
                 });
+                if (callback != null) {
+                    callback();
+                }
             });
         }
 
-
-
         isSliderOpen = false;
-    }
 
+    }
+    
     // Open view
     else if (!isSliderOpen) {
         $('#title-bar' + viewNum).css({
@@ -148,34 +156,77 @@ function infoBoxSlider(viewNum) {
         if (viewNum === 0) {
             $('#view' + viewNum).slideDown(1000, function() {
                 $('#absimage').slideDown(1000);
+                if (callback != null) {
+                    callback();
+                }
             });
         }
-
+        
         if (viewNum != 0) {
             $('#view' + viewNum).slideDown(1000);
+            if (callback != null) {
+                callback();
+            }
         }
-
+        
         isSliderOpen = true;
     }
-
+    
 }
 
 function slideController(moveVal) {
     // Check for extraneous values that don't exist
-    if (Math.abs(viewNum) > 3) {
+    if (Math.abs(moveVal) > 5) {
         return;
     }
 
     // Close view
-    if (isSliderOpen) {
-        infoBoxSlider(curViewNumber);
-    }
+    // if (isSliderOpen) {
+    //     infoBoxSlider(curViewNumber, function() {
+            
+    //     });
+    // }
 
-    const targetView = curViewNumber + moveVal;
+    const targetViewNum = curViewNumber - moveVal;
+    console.log('Current: ' + curViewNumber + ' Target: ' + targetViewNum);
     const shift = (moveVal * 100) + '%';
 
 
-    $('#section0').animate({left: $('#section0').css("left") + shift}, 1000);
+    // $('#section0').animate({left: `calc(${$('#section0').css('left')} + ${shift})`}, 1000);
+
+    views.forEach(viewNum => {
+        // console.log(`calc(${$('#section' + viewNum).css('left')} + ${shift})`);
+        // let marginShift;
+        // if (parseInt($('#section' + viewNum).css('left')) < parseInt($('#section' + targetViewNum).css('left'))) {
+        //     marginShift = 'marginLeft'
+        // }
+
+        let marginLeft = '0';
+        let marginRight = '0';
+        if (viewNum < targetViewNum) {
+            marginRight = '-100%'
+            marginLeft = '0';
+            console.log('marginLeft');
+        } else if (viewNum > targetViewNum) {
+            marginRight = '0';
+            marginLeft = '-100%';
+            console.log('marginRight');
+        } else {
+            marginLeft = '0';
+            marginRight = '0';
+            console.log('margin 0');
+        }
+
+        $('#section' + viewNum).animate({
+            left: `calc(${$('#section' + viewNum).css('left')} + ${shift})`,
+            marginLeft: marginLeft,
+            marginRight: marginRight
+        }, 1000);
+        
+        console.log(viewNum +': '+ $('#section' + viewNum).css('left'));
+    });
+
+    curViewNumber = targetViewNum;
 
 }
 
@@ -220,19 +271,36 @@ function infoBoxSlgider() {
 
 function arrowControls() {
     $('#left-arrow').click(function (e) { 
-        // console.log("Left");
-        $('#section0').animate({right: '100%', marginLeft: '-100%'}, 1000);
-        $('#section1').animate({left: '0', marginRight: '0'}, 1000);
-        curViewNumber = 1;
-        e.preventDefault();
+        console.log("Left");
+        const testMargin = '-100%';
+        // $('#section0').animate({left: '-100%', marginLeft: testMargin, marginRight: '0'}, 1000);
+        // $('#section1').animate({left: '0', marginRight: '0', marginLeft: '0'}, 1000);
+        // curViewNumber = 1;
         
+        if (isSliderOpen) {
+            infoBoxSlider(curViewNumber, function() {
+                slideController(-1);
+            });
+        } else {
+            slideController(-1);
+        }
+
+        e.preventDefault();
     });
     $('#right-arrow').click(function (e) { 
-        // console.log("Right");
-        $('#section1').animate({left: '100%', marginRight: '-100%'}, 1000);
-        $('#section0').animate({right: '0', marginLeft: '0'}, 1000);
-        curViewNumber = 0;
-        e.preventDefault();
+        console.log("Right");
+        // $('#section1').animate({left: '100%', marginLeft: '0',marginRight: '-100%'}, 1000);
+        // $('#section0').animate({left: '0', marginRight: '0' ,marginLeft: '0'}, 1000);
+        // curViewNumber = 0;
         
+        if (isSliderOpen) {
+            infoBoxSlider(curViewNumber, function() {
+                slideController(1);
+            });
+        } else {
+            slideController(1);
+        }
+        
+        e.preventDefault();
     });
 }

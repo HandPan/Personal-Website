@@ -361,11 +361,12 @@ body {
 }
 
 #section0 {
-    /* background-color: red; */
+    background-color: red;
     /* width: 100vw; */
-    /* margin: 20px; */
+    /* margin: 0 20px; */
+    /* margin-right: 20px; */
     /* margin-top: 400px; */
-    /* padding: 20px; */
+    /* padding: 0 20px; */
     /* padding: 25px; */
     /* background-color: #574240; */
     /* margin: auto; */
@@ -652,14 +653,15 @@ body {
 
 #section1 {
     /* background-color: rgba(7, 11, 13, 255); */
-    /* background-color: red; */
+    background-color: red;
     /* position: absolute; */
     position: relative;
     /* margin-left: 200%; */
     float: left;
     /* right: 100%; */
     left: 100%;
-    margin-right: -100%;
+    margin-left: -100%;
+    margin-right: 0;
     /* width: 0; */
     /* color: black; */
 }

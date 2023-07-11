@@ -19,7 +19,7 @@ $('document').ready(function () {
 // Globals
 let isSliderOpen = true;
 let curViewNumber = 0;
-const views = [0, 1];
+const views = [-1, 0, 1];
 
 function isTabletWidth() {
     return $('#tablet-indicator').is(':visible');
@@ -187,9 +187,9 @@ function slideController(moveVal) {
     //     });
     // }
 
-    const targetViewNum = curViewNumber - moveVal;
-    console.log('Current: ' + curViewNumber + ' Target: ' + targetViewNum);
-    const shift = (moveVal * 100) + '%';
+    const targetViewNum = curViewNumber + moveVal;
+    const shift = (moveVal * -100) + '%';
+    console.log('Current: ' + curViewNumber + ' Target: ' + targetViewNum + ' Shift: ' + shift);
 
 
     // $('#section0').animate({left: `calc(${$('#section0').css('left')} + ${shift})`}, 1000);
@@ -203,14 +203,14 @@ function slideController(moveVal) {
 
         let marginLeft = '0';
         let marginRight = '0';
-        if (viewNum < targetViewNum) {
-            marginRight = '-100%'
+        if (viewNum > targetViewNum) {
+            marginRight = '-100%';
             marginLeft = '0';
-            console.log('marginLeft');
-        } else if (viewNum > targetViewNum) {
+            console.log('marginRight');
+        } else if (viewNum < targetViewNum) {
             marginRight = '0';
             marginLeft = '-100%';
-            console.log('marginRight');
+            console.log('marginLeft');
         } else {
             marginLeft = '0';
             marginRight = '0';
@@ -223,7 +223,7 @@ function slideController(moveVal) {
             marginRight: marginRight
         }, 1000);
         
-        console.log(viewNum +': '+ $('#section' + viewNum).css('left'));
+        // console.log(viewNum +': '+ $('#section' + viewNum).css('left'));
     });
 
     curViewNumber = targetViewNum;
@@ -272,7 +272,7 @@ function infoBoxSlgider() {
 function arrowControls() {
     $('#left-arrow').click(function (e) { 
         console.log("Left");
-        const testMargin = '-100%';
+        // const testMargin = '-100%';
         // $('#section0').animate({left: '-100%', marginLeft: testMargin, marginRight: '0'}, 1000);
         // $('#section1').animate({left: '0', marginRight: '0', marginLeft: '0'}, 1000);
         // curViewNumber = 1;
@@ -284,9 +284,10 @@ function arrowControls() {
         } else {
             slideController(-1);
         }
-
+        
         e.preventDefault();
     });
+
     $('#right-arrow').click(function (e) { 
         console.log("Right");
         // $('#section1').animate({left: '100%', marginLeft: '0',marginRight: '-100%'}, 1000);

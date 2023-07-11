@@ -360,6 +360,21 @@ body {
     position: relative !important;
 }
 
+#section-1 {
+    /* background-color: rgba(7, 11, 13, 255); */
+    background-color: red;
+    /* position: absolute; */
+    position: relative;
+    /* margin-left: 200%; */
+    float: left;
+    /* right: 100%; */
+    left: -100%;
+    margin-left: 0;
+    margin-right: -100%;
+    /* width: 0; */
+    /* color: black; */
+}
+
 #section0 {
     background-color: red;
     /* width: 100vw; */
@@ -378,12 +393,12 @@ body {
     /* position: absolute; */
     position: relative;
     /* left: 400%; */
+    float: left;
     left: 0;
     right: 0;
     /* margin-left: -100%; */
     /* margin: auto; */
     /* margin-left: 140%; */
-    float: left;
     /* left: 40%; */
     /* color: #F4686A; */
     /* color: rgba(50, 60, 50, 0.9) !important; */

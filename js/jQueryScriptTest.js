@@ -4,10 +4,11 @@ $(document).ready(function () {
 
 // Globals
 let curViewNumber = 0;
+let curViewIndex = 2;
 // const views = [-2, -1, 0, 1, 2];
 // let posData = [-200, -100, 0, 100, 200];
-const views = [-1, 0];
-let posData = [-100 , 0];
+const views = [-2, -1, 0, 1, 2];
+let posData = [-200, -100 , 0, 100, 200];
 
 function arrowControls() {
     $('#left-arrow').click(function (e) { 
@@ -36,10 +37,11 @@ function arrowControls() {
 
 function calcMarginLeft(viewNum, targetViewNum) {
     let marginLeft = '0';
-    if (viewNum > targetViewNum) {
+    if (viewNum < targetViewNum) {
         marginLeft = '0';
-    } else if (viewNum < targetViewNum) {
+    } else if (viewNum > targetViewNum) {
         // marginRight = '-100%';
+        marginLeft = '-100%'
         console.log('marginLeft');
     } else {
         marginLeft = '0';
@@ -50,10 +52,10 @@ function calcMarginLeft(viewNum, targetViewNum) {
 
 function calcMarginRight(viewNum, targetViewNum) {
     let marginRight = '0';
-    if (viewNum > targetViewNum) {
+    if (viewNum < targetViewNum) {
         marginRight = '-100%';
         console.log('marginRight');
-    } else if (viewNum < targetViewNum) {
+    } else if (viewNum > targetViewNum) {
         marginRight = '0';
     } else {
         marginRight = '0';
@@ -68,7 +70,24 @@ function slideController(moveVal) {
     if (Math.abs(moveVal) > 5) {
         return;
     }
+    
+    const targetViewNum = curViewNumber + moveVal;
+    
+    if (targetViewNum > views.length/2 || targetViewNum < views.length/2 * -1) {
+        return;
+    }
 
+    curViewIndex += moveVal;
+    console.log('curViewIndex: ' + curViewIndex);
+    if (curViewIndex === views.length-1) {
+        $('#left').attr('data-state', 'disabled');
+    } else if (curViewIndex === 0) {
+        $('#right').attr('data-state', 'disabled');
+    } else {
+        $('#left').attr('data-state', '');
+        $('#right').attr('data-state', '');
+    }
+    
     // Close view
     // if (isSliderOpen) {
     //     infoBoxSlider(curViewNumber, function() {
@@ -76,7 +95,6 @@ function slideController(moveVal) {
     //     });
     // }
 
-    const targetViewNum = curViewNumber + moveVal;
     for (let i = 0; i < posData.length; i++) {
         posData[i] += (moveVal * 100);
         console.log('PosData[' + i +']: ' + posData[i]);
@@ -179,13 +197,13 @@ function slideController(moveVal) {
         //     marginShift = 'marginLeft'
         // }
 
-        console.log(viewNum + (Math.ceil(views.length/2)));
+        console.log((Math.ceil(views.length/2))-1);
         // console.log(leftVal);
 
         $('#section' + viewNum).animate({
-            left: posData[viewNum + (Math.ceil(views.length/2))-1] + '%',
-            marginLeft: calcMarginLeft(viewNum, targetViewNum),
-            marginRight: calcMarginRight(viewNum, targetViewNum)
+            left: posData[viewNum + 2] + '%'
+            // marginLeft: calcMarginLeft(viewNum, targetViewNum),
+            // marginRight: calcMarginRight(viewNum, targetViewNum)
         }, 1000);
         
         // console.log(viewNum +': '+ $('#section' + viewNum).css('left'));

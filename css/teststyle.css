@@ -1,3 +1,10 @@
+:root {
+    --animStartHeight: 0px;
+    --animMidHeight: 0px;
+    --animEndHeight: 0px;
+    --animStartRotation: 0deg;
+    --animEndRotation: 0deg;
+}
 
 .test-container {
     border: 3px solid black;
@@ -38,22 +45,232 @@
 
 /* Testing for the Slider */
 
+@keyframes anim-arrow {
+    0% {transform: translate(0, var(--animStartHeight)) rotate(var(--animStartRotation));}
+    50% {transform: translate(0, var(--animMidHeight)) rotate(0deg);}
+    100% {transform: translate(0, var(--animEndHeight)) rotate(var(--animEndRotation));}
+}
+
+@keyframes anim-arrow-reverse {
+    0% {transform: translate(0, var(--animStartHeight)) rotate(var(--animStartRotation));}
+    50% {transform: translate(0, var(--animMidHeight)) rotate(0deg);}
+    100% {transform: translate(0, var(--animEndHeight)) rotate(var(--animEndRotation));}
+}
+
+/* @keyframes arrow-top {
+    0% {transform: translate(0, -6px) rotate(-45deg);}
+    50% {transform: translate(0, -10px) rotate(0deg);}
+    100% {transform: translate(0, 2px);}
+}
+
+@keyframes arrow-top-reverse {
+    0% {transform: translate(0, 2px);}
+    50% {transform: translate(0, -10px) rotate(0deg);}
+    100% {transform: translate(0, -6px) rotate(-45deg);}
+} */
+
+/* @keyframes arrow-bottom {
+    0% {transform: translate(0, 5px) rotate(45deg);}
+    50% {transform: translate(0, 10px) rotate(0deg);}
+    100% {transform: translate(0, -2px);}
+}
+
+@keyframes arrow-bottom-reverse {
+    0% {transform: translate(0, -2px);}
+    50% {transform: translate(0, 10px) rotate(0deg);}
+    100% {transform: translate(0, 5px) rotate(45deg);}
+} */
+
 .arrow-button {
-    /* border: 3px solid black; */
+    /* outline: 2px solid red; */
     position: absolute;
-    top: 25px;
-    /* padding: 20px; */
+    /* top: 25px; */
+    top: 35%;
+    padding: 20px;
     margin: 0 auto;
     z-index: 5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     &#right-arrow {
-        right: -10%;
+        right: -15%;
 
+        :first-child {
+            transform: translate(0, -6px) rotate(45deg);
+            border-top: 5px solid black;
+            transition: 0.2s;
+            border-radius: 1px;            
+        }
 
+        :last-child {
+            transform: translate(0, 5px) rotate(-45deg);
+            border-bottom: 5px solid black;
+            transition: 0.2s;
+            border-radius: 1px;
+        }
     }
 
     &#left-arrow {
-        left: -10%;
+        left: -15%;
+        
+        :first-child {
+            transform: translate(0, -6px) rotate(-45deg);
+            border-top: 5px solid black;
+            transition: 0.2s;
+            border-radius: 1px;            
+        }
+        
+        :last-child {
+            transform: translate(0, 5px) rotate(45deg);
+            border-bottom: 5px solid black;
+            transition: 0.2s;
+            border-radius: 1px;
+        }
+
+        &[data-state=disabled] {
+        
+            :first-child {
+
+                --animStartHeight: -6px;
+                --animMidHeight: -10px;
+                --animEndHeight: 2px;
+                --animStartRotation: -45deg;
+                --animEndRotation: 0deg;
+
+                animation: anim-arrow 0.7s ease-in-out forwards;
+
+            }
+
+            :last-child {
+
+                /* animation: arrow-bottom 0.7s ease-in-out forwards; */
+
+                --animStartHeight: 5px;
+                --animMidHeight: 10px;
+                --animEndHeight: -2px;
+                --animStartRotation: 45deg;
+                --animEndRotation: 0deg;
+
+                animation: anim-arrow 0.7s ease-in-out forwards;
+
+            }
+        }
+
+        &[data-state=''] {
+
+            :first-child {
+
+                /* animation: arrow-top-reverse 0.7s ease-in-out forwards; */
+
+                --animStartHeight: 2px;
+                --animMidHeight: -10px;
+                --animEndHeight: -6px;
+                --animStartRotation: 0deg;
+                --animEndRotation: -45deg;
+
+                animation: anim-arrow-reverse 0.7s ease-in-out forwards;
+
+            }
+
+            :last-child {
+
+                /* animation: arrow-bottom-reverse 0.7s ease-in-out forwards; */
+
+                --animStartHeight: -2px;
+                --animMidHeight: 10px;
+                --animEndHeight: 5px;
+                --animStartRotation: 0deg;
+                --animEndRotation: 45deg;
+
+                animation: anim-arrow-reverse 0.7s ease-in-out forwards;
+
+            }
+        }
+    }
+
+    &#right-arrow {
+        &[data-state=disabled] {
+            :first-child {
+                /* animation: arrow-top 0.7s ease-in-out forwards; */
+
+                --animStartHeight: -6px;
+                --animMidHeight: -10px;
+                --animEndHeight: 2px;
+                --animStartRotation: 45deg;
+                --animEndRotation: 0deg;
+
+                animation: anim-arrow 0.7s ease-in-out forwards;
+            }
+
+            :last-child {
+                /* animation: arrow-bottom 0.7s ease-in-out forwards; */
+
+                --animStartHeight: 5px;
+                --animMidHeight: 10px;
+                --animEndHeight: -2px;
+                --animStartRotation: -45deg;
+                --animEndRotation: 0deg;
+
+                animation: anim-arrow 0.7s ease-in-out forwards;
+            }
+        }
+
+        &[data-state=''] {
+            
+            :first-child {
+
+                --animStartHeight: 2px;
+                --animMidHeight: -10px;
+                --animEndHeight: -6px;
+                --animStartRotation: 0deg;
+                --animEndRotation: 45deg;
+
+                animation: anim-arrow-reverse 0.7s ease-in-out forwards;
+            
+            }
+
+            :last-child {
+
+                --animStartHeight: -2px;
+                --animMidHeight: 10px;
+                --animEndHeight: 5px;
+                --animStartRotation: 0deg;
+                --animEndRotation: -45deg;
+
+                animation: anim-arrow-reverse 0.7s ease-in-out forwards;
+
+            }
+        }
+    }
+
+}
+
+.arrow-button:hover {
+
+    &[data-state=''] {
+        cursor: pointer;
+
+        &#left-arrow {
+
+            :first-child { 
+                border-radius: 0px 10px 0px 0px;
+            }
+
+            :last-child {
+                border-radius: 0px 0px 10px 0px;
+            }
+        }
+
+        &#right-arrow {
+            :first-child { 
+                border-radius: 10px 0px 0px 0px;
+            }
+            
+            :last-child {
+                border-radius: 0px 0px 0px 10px;
+            }
+        }
     }
 }
 
@@ -62,7 +279,10 @@
     border-width: 0 5px 5px 0;
     display: inline-block;
     padding: 10px;
-    transition: 0.2s;
+    /* transition: transform 0.5s, border-radius 0.2s, border 0.2s cubic-bezier(0.1, 0.1, 1, 0.1); */
+    /* transition: transform 0.5s, border-radius 0.2s, border 0s 0.1s; */
+    transition: transform 0.5s, border-radius 0.2s, border 0s 0.2s, width 0.5s 0.2s;
+    /* transition: transform 0.5s, border-radius 0.2s; */
     /* opacity: 0; */
     /* overflow: hidden; */
 }
@@ -74,22 +294,44 @@
     }
 }
 
+.right {
+    position: absolute;
+    width: 25px;
+    height: 5px;
+}
+
 #right {
     transform: rotate(-45deg);
 
     &[data-state=disabled] {
-        border: none;
+        cursor: default;
+        border-width: 0px 0 5px 0;
+        transform: rotate(450deg);
+        width: 10px;
+        /* border: none; */
         cursor: default;
     }
+}
+
+.left {
+    position: absolute;
+    width: 25px;
+    height: 5px;
+    
+    /* Looks cool, Like a ribbon */
+    /* background-color: rebeccapurple; */
+
+    /* border-top: 5px solid black; */
+    /* border-radius: 3px; */
 }
 
 #left {
     transform: rotate(135deg);
 
     &[data-state=disabled] {
-        border-width: 0 0 5px 0;
-        transform: rotate(270deg);
-        width: 10px;
+        border-width: 5px 0 5px 0;
+        transform: rotate(-225deg);
+        /* width: 10px; */
         /* border: none; */
         cursor: default;  
     }

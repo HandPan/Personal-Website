@@ -1,6 +1,10 @@
 $(document).ready(function () {
     arrowControls();
+    $('#left-arrow').attr('data-state', '');
+    $('#right-arrow').attr('data-state', '');
 });
+
+console.log("Test -------- ");
 
 // Globals
 let curViewNumber = 0;
@@ -80,12 +84,16 @@ function slideController(moveVal) {
     curViewIndex += moveVal;
     console.log('curViewIndex: ' + curViewIndex);
     if (curViewIndex === views.length-1) {
-        $('#left').attr('data-state', 'disabled');
+        $('#left-arrow').attr('data-state', 'disabled');
+        // $('#left-arrow').addClass('arrow-in');
+        // $('#left-arrow').removeClass('arrow-out');
     } else if (curViewIndex === 0) {
-        $('#right').attr('data-state', 'disabled');
+        $('#right-arrow').attr('data-state', 'disabled');
     } else {
-        $('#left').attr('data-state', '');
-        $('#right').attr('data-state', '');
+        $('#left-arrow').attr('data-state', '');
+        // $('#left-arrow').addClass('arrow-out');
+        // $('#left-arrow').removeClass('arrow-in');
+        $('#right-arrow').attr('data-state', '');
     }
     
     // Close view

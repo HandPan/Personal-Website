@@ -19,7 +19,9 @@ $('document').ready(function () {
 // Globals
 let isSliderOpen = true;
 let curViewNumber = 0;
+let curViewIndex = 1;
 const views = [-1, 0, 1];
+let posData = [-100, 0, 100];
 
 function isTabletWidth() {
     return $('#tablet-indicator').is(':visible');
@@ -84,6 +86,8 @@ $(document).ready(function () {
     // $('#content').css(height, (($("#title-bar0").height())));
     // $("#section2").css("position", "relative");
     // $('#section2').addClass('active-section');
+    $('#left-arrow').attr('data-state', '');
+    $('#right-arrow').attr('data-state', '');
 
 });
 
@@ -94,6 +98,17 @@ function setUpTitleBars() {
 
             infoBoxSlider(viewNum, null);
         });
+    });
+
+    views.forEach(viewNum => {
+        if (viewNum != 0) {
+            $('#view' + viewNum).slideUp(1000, function() {
+                $('#title-bar' + viewNum).css({
+                    "border-bottom": "3px solid black",
+                    "border-radius": ""
+                });
+            });
+        }
     });
 }
 
@@ -176,10 +191,29 @@ function infoBoxSlider(viewNum, callback) {
 
 function slideController(moveVal) {
     // Check for extraneous values that don't exist
-    if (Math.abs(moveVal) > 5) {
+    if (Math.abs(moveVal) > views.length) {
         return;
     }
-
+    
+    const targetViewNum = curViewNumber - moveVal;
+    
+    if (targetViewNum > views.length/2 || targetViewNum < views.length/2 * -1) {
+        return;
+    }
+    
+    console.log('curViewIndex: ' + curViewIndex);
+    curViewIndex -= moveVal;
+    console.log('curViewIndex: ' + curViewIndex);
+    console.log('Current: ' + curViewNumber + ' Target: ' + targetViewNum);
+    if (curViewIndex === views.length-1) {
+        $('#right-arrow').attr('data-state', 'disabled');
+    } else if (curViewIndex === 0) {
+        $('#left-arrow').attr('data-state', 'disabled');
+    } else {
+        $('#right-arrow').attr('data-state', '');
+        $('#left-arrow').attr('data-state', '');
+    }
+    
     // Close view
     // if (isSliderOpen) {
     //     infoBoxSlider(curViewNumber, function() {
@@ -187,43 +221,19 @@ function slideController(moveVal) {
     //     });
     // }
 
-    const targetViewNum = curViewNumber + moveVal;
-    const shift = (moveVal * -100) + '%';
-    console.log('Current: ' + curViewNumber + ' Target: ' + targetViewNum + ' Shift: ' + shift);
-
-
-    // $('#section0').animate({left: `calc(${$('#section0').css('left')} + ${shift})`}, 1000);
+    for (let i = 0; i < posData.length; i++) {
+        posData[i] += (moveVal * 100);
+        console.log('PosData[' + i +']: ' + posData[i]);
+    }
 
     views.forEach(viewNum => {
-        // console.log(`calc(${$('#section' + viewNum).css('left')} + ${shift})`);
-        // let marginShift;
-        // if (parseInt($('#section' + viewNum).css('left')) < parseInt($('#section' + targetViewNum).css('left'))) {
-        //     marginShift = 'marginLeft'
-        // }
 
-        let marginLeft = '0';
-        let marginRight = '0';
-        if (viewNum > targetViewNum) {
-            marginRight = '-100%';
-            marginLeft = '0';
-            console.log('marginRight');
-        } else if (viewNum < targetViewNum) {
-            marginRight = '0';
-            marginLeft = '-100%';
-            console.log('marginLeft');
-        } else {
-            marginLeft = '0';
-            marginRight = '0';
-            console.log('margin 0');
-        }
+        console.log((Math.ceil(views.length/2))-1);
 
         $('#section' + viewNum).animate({
-            left: `calc(${$('#section' + viewNum).css('left')} + ${shift})`,
-            marginLeft: marginLeft,
-            marginRight: marginRight
+            left: posData[viewNum + 1] + '%'
         }, 1000);
         
-        // console.log(viewNum +': '+ $('#section' + viewNum).css('left'));
     });
 
     curViewNumber = targetViewNum;
@@ -279,10 +289,10 @@ function arrowControls() {
         
         if (isSliderOpen) {
             infoBoxSlider(curViewNumber, function() {
-                slideController(-1);
+                slideController(1);
             });
         } else {
-            slideController(-1);
+            slideController(1);
         }
         
         e.preventDefault();
@@ -296,10 +306,10 @@ function arrowControls() {
         
         if (isSliderOpen) {
             infoBoxSlider(curViewNumber, function() {
-                slideController(1);
+                slideController(-1);
             });
         } else {
-            slideController(1);
+            slideController(-1);
         }
         
         e.preventDefault();

@@ -189,7 +189,7 @@ function infoBoxSlider(viewNum, callback) {
     
 }
 
-function slideController(moveVal) {
+function slideController(moveVal, callback) {
     // Check for extraneous values that don't exist
     if (Math.abs(moveVal) > views.length) {
         return;
@@ -232,51 +232,16 @@ function slideController(moveVal) {
 
         $('#section' + viewNum).animate({
             left: posData[viewNum + 1] + '%'
-        }, 1000);
+        }, 1000, function() {
+            if (viewNum === targetViewNum) {
+                infoBoxSlider(viewNum);
+            }
+        });
         
     });
 
     curViewNumber = targetViewNum;
 
-}
-
-function infoBoxSlgider() {
-    let isOpen = true;
-    if (!isTabletWidth()) {
-        $("#title-bar0").click(function (e) { 
-            // console.log("Clicked");
-            // console.log(isOpen);
-            if (isOpen) {
-                $("#absimage").slideUp(1000, function() {
-                    $("#view0").slideUp(1000, function() {
-                        $("#title-bar0").addClass("notransition")
-                        .css("border-bottom", "3px solid black")
-                        ;
-                        $("#title-bar0")[0].offsetHeight; // Have to flush css annoying. Thank you Mark
-                        $("#title-bar0").removeClass("notransition");
-                        // $("#title-bar0").css("border-radius", "0px");
-                        $("#title-bar0").css("border-radius", "");
-                    })
-                    ;
-                    isOpen = false;
-                });
-            }
-
-            if (!isOpen) {
-                $("#title-bar0").css({
-                    "border-bottom": "none",
-                    "border-radius": "10px"
-                    // "transition": "0.4s"
-                });
-                $("#view0").slideDown(1000, function() {
-                    $("#absimage").slideDown(1000);
-                    isOpen = true;
-                }).css("border-radius", "10px");
-            }
-            e.preventDefault();
-            
-        });
-    }
 }
 
 function arrowControls() {
@@ -289,10 +254,14 @@ function arrowControls() {
         
         if (isSliderOpen) {
             infoBoxSlider(curViewNumber, function() {
-                slideController(1);
+                slideController(1, function() {
+                    // infoBoxSlider(curViewNumber);
+                });
             });
         } else {
-            slideController(1);
+            slideController(1, function() {
+                // infoBoxSlider(curViewNumber);
+            });
         }
         
         e.preventDefault();
@@ -306,10 +275,14 @@ function arrowControls() {
         
         if (isSliderOpen) {
             infoBoxSlider(curViewNumber, function() {
-                slideController(-1);
+                slideController(-1, function() {
+                    // infoBoxSlider(curViewNumber);
+                });
             });
         } else {
-            slideController(-1);
+            slideController(-1, function() {
+                // infoBoxSlider(curViewNumber);
+            });
         }
         
         e.preventDefault();

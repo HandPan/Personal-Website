@@ -35,15 +35,16 @@
                     <a href="#home" class="navbar-brand logo"><h1>Roger Jacobsen | Home</h1></a>
                     <!-- <span class="navbar-text">Roger Jacobsen</span> -->
                     <ul class="navbar-nav">
-                        <li class="nav-item h3"><a class="nav-link" href="#home">Home</a></li>
-                        <li class="nav-item h3"><a class="nav-link" href="#content-wrapper">About</a></li>
-                        <li class="nav-item h3"><a class="nav-link" href="#content-wrapper">Projects</a></li>
+                        <li class="nav-item h3"><a class="nav-link" id="link" href="#home">Home</a></li>
+                        <li class="nav-item h3"><a class="nav-link" id="link0" href="#content-wrapper">About</a></li>
+                        <li class="nav-item h3"><a class="nav-link" id="link-1" href="#content-wrapper">Hobbies</a></li>
+                        <li class="nav-item h3"><a class="nav-link" id="link1" href="#content-wrapper">Projects</a></li>
 
                         <!-- <li class="nav-item h3"><a href="about.html" class="nav-link">AboutHtml</a></li> -->
                         <!-- <li class="nav-item h3"><a href="blog.html" class="nav-link">Blog</a></li> -->
                         <!-- <li class="nav-item h3"><a href="contact.html" class="nav-link">Contact</a></li> -->
                         <!-- <li class="nav-item h3"><a href="gallery.html" class="nav-link">Gallery</a></li> -->
-                        <li class="nav-item h3"><a href="test.html" class="nav-link">Test</a></li>
+                        <!-- <li class="nav-item h3"><a href="test.html" class="nav-link">Test</a></li> -->
                     </ul>
                 </div>
             </nav>
@@ -103,8 +104,8 @@
                                             <div class="text-field">
                                                 <h4>Laser Cutting</h4>
                                                 <p>I first got into laser cutting when I was in Community College where some web surfing gave me ideas plenty where all I needed was a machine of which I got access to with the start of my college career.</p>
-                                                <p>The largest of the projects is a topographical road map of my home town. Spanning over a couple years. Though a large portion was taken up by Covid and not having access to a laser.</p>
-                                                <p>All my work has been done in Inkscape as well as other tools such as QGIS for the map data.</p>
+                                                <p>The thing I didn't expect going in was the amount of time spent creating the files. Some projects may be quick conversions of images to svg files while others will have you learning new editing tricks to get the finest details and get past how the laser will interpret the file.</p>
+                                                <p>All my work has been done in Inkscape and Adobe Illustrator as well as incorporating other tools such as QGIS which is really useful for getting map data.</p>
                                             </div>
                                         </td>
                                     </tr>
@@ -182,38 +183,39 @@
                             <div class="view" id="view1">
                                 <table>
                                     <tr>
-                                        <td class="left-td"><img width="100%" src="images/Sudoku-Project.PNG" alt=""></td>
+                                        <td class="left-td"><img width="100%" src="images/Perlin-Noise-Demo.gif" alt=""></td>
                                         <td class="right-td">
+                                            <div class="text-field">
+                                                <h4>Perlin Noise Demo</h4>
+                                                <p>I've been working on a personal game built in Unity and a big part that I encountered was the need of pseudorandom generation. With this challenge I have been researching and demoing various forms of generation to determine which would work best.</p>
+                                                <p>The demo I made here is using sampling of perlin noise to produce the "random" fluctuations in the terrain height as well as color saturation with the higher points being a brighter shade of red.</p>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="left-td">
                                             <div class="text-field">
                                                 <h4>Sudoku Solver</h4>
                                                 <p>To keep my javascript skills strong I have been working on various small games/projects hosted in the browser.</p>
-                                                <p>The most recent project has been this sudoku solver. As you may see in the demo section I have been really fascinated in procedural generation algorithms and Sudoku was an amazing project to help in the learning of Wave Function Collapse and entropy of a system. This is where every cell has a base set entropy that is decreased as time goes on and more neighbor cells get reduced entropy.</p>
-                                                <p>A follow up project would be a image generator that can create "random" images from a set of connecting smaller images where each smaller image has rules for which neighbors it can have.</p>
+                                                <p>The most recent project has been this sudoku solver. I have been really fascinated in procedural generation algorithms and Sudoku was an amazing project to help in the learning of Wave Function Collapse and the entropy of a system. This is where every cell has a base set entropy that is decreased as time goes on and more neighbor cells get reduced entropy.</p>
+                                                <p>A follow up project would be an image generator that can create "random" images from a set of connecting smaller images where each smaller image has rules for which neighbors it can have.</p>
                                             </div>
+                                        </td>
+                                        <td class="right-td">
+                                            <img width="100%" src="images/Sudoku-Project.PNG" alt="Demo Gif of Perlin Noise">
                                         </td>
                                     </tr>
                                     <tr>
                                         <td class="left-td">
-                                            <div class="text-field">
-                                                <h4>Laser Cutting</h4>
-                                                <p>I first got into laser cutting when I was in Community College where some web surfing gave me ideas plenty where all I needed was a machine of which I got access to with the start of my college career.</p>
-                                                <p>The largest of the projects is a topographical road map of my home town. Spanning over a couple years. Though a large portion was taken up by Covid and not having access to a laser.</p>
-                                                <p>All my work has been done in Inkscape as well as other tools such as QGIS for the map data.</p>
-                                            </div>
-                                        </td>
-                                        <td class="right-td">
-                                            <img width="100%" src="images/Topo-Wall-Map.jpg" alt="Topographical Seattle RoadMap">
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="left-td">
-                                            <img width="100%" src="images/Berry-Mead.jpg" alt="">
+                                            <img width="100%" src="images/Seattle-Topo-Fresh-Cut.jpg" alt="Fresh Cut Street-Map of Seattle Area">
                                         </td>
                                         <td class="right-td">
                                             <div class="text-field">
-                                                <h4>Mead</h4>
-                                                <p>Another hobby of mine has been mead making. There is an ungodly amount of variation that one can perform and result in fully different products and that exhilarates my creative side.</p>
-                                                <p>Pictured here is one of the more recent batches I have produced. Made using raspberries and blackberries it gained this brilliant color and came out tasting amazing.</p>
+                                                <h4>Seattle Topographical Road Map</h4>
+                                                <p>This project spanned years and is one of my favorites.</p>
+                                                <p>I first began working on it when I got access to a laser cutter in Community College. Editing and learning tools to consolidate a lot of pieces together to get a final output. And then covid hit.</p>
+                                                <p>Project sat on the back-burner until places started opening again and my University had a maker space for me to cut and complete what all I've done.</p>
+                                                <p>I built and designed this model to display each road and side road while also representing the great elevation of the city with every layer representing 20 meters. About the size of a two story house!</p>
                                             </div>
                                         </td>
                                     </tr>

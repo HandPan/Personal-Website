@@ -22,6 +22,7 @@ let curViewNumber = 0;
 let curViewIndex = 1;
 const views = [-1, 0, 1];
 let posData = [-100, 0, 100];
+let inMotion = false;
 
 function isTabletWidth() {
     return $('#tablet-indicator').is(':visible');
@@ -34,6 +35,7 @@ $(document).ready(function () {
         // infoBoxSlider(curViewNumber);
         setUpTitleBars();
         arrowControls();
+        navController();
 });
 
 function rotatingSkills(i, l) {
@@ -132,7 +134,7 @@ function infoBoxSlider(viewNum, callback) {
     // Close view
     if (isSliderOpen) {
         if (viewNum === 0) {
-            $('#absimage').slideUp(1000, function() {
+            $('#absimage').slideUp(500, function() {
                 $('#view' + viewNum).slideUp(1000, function() {
                     $('#title-bar' + viewNum).css({
                         "border-bottom": "3px solid black",
@@ -170,7 +172,7 @@ function infoBoxSlider(viewNum, callback) {
         
         if (viewNum === 0) {
             $('#view' + viewNum).slideDown(1000, function() {
-                $('#absimage').slideDown(1000);
+                $('#absimage').slideDown(500);
                 if (callback != null) {
                     callback();
                 }
@@ -207,8 +209,10 @@ function slideController(moveVal, callback) {
     console.log('Current: ' + curViewNumber + ' Target: ' + targetViewNum);
     if (curViewIndex === views.length-1) {
         $('#right-arrow').attr('data-state', 'disabled');
+        $('#left-arrow').attr('data-state', '');
     } else if (curViewIndex === 0) {
         $('#left-arrow').attr('data-state', 'disabled');
+        $('#right-arrow').attr('data-state', '');
     } else {
         $('#right-arrow').attr('data-state', '');
         $('#left-arrow').attr('data-state', '');
@@ -241,50 +245,116 @@ function slideController(moveVal, callback) {
     });
 
     curViewNumber = targetViewNum;
+    callback();
 
 }
 
 function arrowControls() {
     $('#left-arrow').click(function (e) { 
-        console.log("Left");
-        // const testMargin = '-100%';
-        // $('#section0').animate({left: '-100%', marginLeft: testMargin, marginRight: '0'}, 1000);
-        // $('#section1').animate({left: '0', marginRight: '0', marginLeft: '0'}, 1000);
-        // curViewNumber = 1;
-        
-        if (isSliderOpen) {
-            infoBoxSlider(curViewNumber, function() {
-                slideController(1, function() {
-                    // infoBoxSlider(curViewNumber);
+        if ($('#left-arrow').attr('data-state') === 'disabled') {
+            return;
+        }
+        if (!inMotion) {
+            inMotion = true;
+            console.log("Left");
+            // const testMargin = '-100%';
+            // $('#section0').animate({left: '-100%', marginLeft: testMargin, marginRight: '0'}, 1000);
+            // $('#section1').animate({left: '0', marginRight: '0', marginLeft: '0'}, 1000);
+            // curViewNumber = 1;
+            
+            if (isSliderOpen) {
+                infoBoxSlider(curViewNumber, function() {
+                    slideController(1, function() {
+                        inMotion = false;
+                    });
                 });
-            });
-        } else {
-            slideController(1, function() {
-                // infoBoxSlider(curViewNumber);
-            });
+            } else {
+                slideController(1, function() {
+                    inMotion = false;
+                });
+            }
+        }
+
+        e.preventDefault();
+    });
+
+    $('#right-arrow').click(function (e) {
+        if ($('#right-arrow').attr('data-state') === 'disabled') {
+            return;
+        }
+        if (!inMotion) {
+            console.log("Right");
+            inMotion = true;
+            // $('#section1').animate({left: '100%', marginLeft: '0',marginRight: '-100%'}, 1000);
+            // $('#section0').animate({left: '0', marginRight: '0' ,marginLeft: '0'}, 1000);
+            // curViewNumber = 0;
+            
+            if (isSliderOpen) {
+                infoBoxSlider(curViewNumber, function() {
+                    slideController(-1, function() {
+                        inMotion = false;
+                    });
+                });
+            } else {
+                slideController(-1, function() {
+                    inMotion = false;
+                });
+            }
         }
         
         e.preventDefault();
     });
+}
 
-    $('#right-arrow').click(function (e) { 
-        console.log("Right");
-        // $('#section1').animate({left: '100%', marginLeft: '0',marginRight: '-100%'}, 1000);
-        // $('#section0').animate({left: '0', marginRight: '0' ,marginLeft: '0'}, 1000);
-        // curViewNumber = 0;
-        
-        if (isSliderOpen) {
-            infoBoxSlider(curViewNumber, function() {
-                slideController(-1, function() {
-                    // infoBoxSlider(curViewNumber);
-                });
-            });
-        } else {
-            slideController(-1, function() {
-                // infoBoxSlider(curViewNumber);
-            });
-        }
-        
+function navController() {
+    console.log("NavController");
+    $('#link').click(function (e) { 
         e.preventDefault();
+        
+        $('#link' + curViewNumber).removeClass('active-link');
+        $($(this)).addClass('active-link');
+        $('html, body').animate({
+            scrollTop: $('#home').offset().top
+        }, 1);
+    });
+
+    views.forEach(viewNum => {
+        console.log("#link" + viewNum);
+        $('#link' + viewNum).click(function (e) {
+            // console.log("button");
+
+            const targetDiv = $($(this).attr('href'));
+            if (targetDiv.length) {
+                $('#link').removeClass('active-link');
+                $('#link' + curViewNumber).removeClass('active-link');
+                $($(this)).addClass('active-link');
+                $('html, body').animate({
+                    scrollTop: targetDiv.offset().top
+                }, 1, function() {
+                    if (!inMotion) {
+
+                        if (curViewNumber != viewNum) {
+        
+                            inMotion = true;
+        
+                            if (isSliderOpen) {
+                                infoBoxSlider(curViewNumber, function() {
+                                    slideController(curViewNumber-viewNum, function() {
+                                        inMotion = false;
+                                    });
+                                });
+                            } else {
+                                slideController(curViewNumber-viewNum, function() {
+                                    inMotion = false;
+                                });
+                            }   
+                        }
+                    }
+                });
+            }
+
+            e.preventDefault();
+            
+        });
     });
 }

@@ -77,13 +77,13 @@ header {
     /* margin: 10px; */
     margin: 0 !important;
     margin-left: 10px !important;
+    /* margin-left: 20% !important; */
     font-weight: bold;
     /* border: 3px solid red; */
 }
 
-.logo h1 a {
-    color: black;
-    /* text-decoration: none; */
+.nav-text {
+    margin: 0 10%;
 }
 
 nav {
@@ -91,6 +91,7 @@ nav {
     text-align: center;
     overflow: hidden;
     background: linear-gradient(to right, #6d544d, #5c7474);
+    /* margin-right: 20%; */
     /* position: fixed; */
     /* top: 0; */
     /* border: 3px solid red; */
@@ -99,7 +100,7 @@ nav {
 }
 
 nav ul {
-    width: 35%;
+    /* width: 35%; */
     /* margin-bottom: 0; */
     /* float: right; */
     /* list-style-type: none; */
@@ -135,11 +136,11 @@ nav ul li {
 
 .active-link {
     border-color: black;
-    border-radius: 10%;
+    /* border-radius: 10%; */
 }
 
 .active-link:hover {
-    border-radius: 10%;
+    /* border-radius: 10%; */
 }
 
 .active {
@@ -181,9 +182,15 @@ nav ul li a:hover {
 } */
 
 .banner {
+    /* outline: 3px solid red; */
     width: 100%;
     height: 100vh;
-    background-size: cover;
+    background-image: url(../images/Krivan-Peak-Reduced.jpg);
+
+    background-size: 100%;
+    background-position-y: bottom;
+    background-repeat: no-repeat;
+    overflow: hidden;
 }
 
 .banner img {
@@ -232,6 +239,8 @@ nav ul li a:hover {
     position: absolute;
     height: auto;
     width: auto;
+    /* backdrop-filter: blur(1px); */
+
 
     border-bottom: 3px solid black;
 }
@@ -253,17 +262,39 @@ nav ul li a:hover {
     text-shadow: #6d544d 5px 5px 5px;
 }
 
-body {
-    margin: 0;
-    padding: 0;
-    line-height: 1.5;
-    font-size: 20px;
+html, body {
+    /* height: 100%; */
+    /* display: flex; */
+    /* flex-direction: column; */
 }
 
-/* main {
-    width: 100%;
-    margin: auto;
+body > * {
+    /* flex-shrink: 0; */
+}
+
+body {
+    /* margin: 0; */
+    /* padding: 0; */
+    line-height: 1.5;
+    font-size: 20px;
+    /* position: relative; */
+}
+
+/* .wrapper, main {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
 } */
+
+/* main > * {
+    flex-shrink: 0;
+} */
+
+#wrapper {
+    /* min-height: calc(100vh - 160px); */
+    /* flex-grow: 1; */
+}
 
 .box1 {
     height: 50vh;
@@ -311,12 +342,19 @@ body {
 
 .inverted-banner {
     width: 100%;
+    /* height: 100vh; */
+    /* min-height: 50vh; */
     /* height: 60vh; */
-    background-size: cover;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.5)), url(../images/Krivan-Peak-Increased-Inverted-2.png);
+    /* background-size: cover; */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.5)), url(../images/Krivan-Peak-Increased-Inverted-4.png);
     background-repeat: no-repeat;
-    background-size: 100%;
+    background-size: cover;
+    
     /* position: absolute; */
+    /* background-position-y: top; */
+    /* background-position-y: 500px; */
+    /* background-attachment: fixed; */
+    /* flex-grow: 1; */
     overflow: hidden;
     z-index: -1;
 }
@@ -334,7 +372,8 @@ body {
     position: relative;
     margin: 0;
     padding: 0;
-    margin-top: 400px;
+    /* margin-top: 400px; */
+    margin-top: 20vw;
     padding-top: 70px;
 }
 
@@ -356,7 +395,8 @@ body {
     /* outline: 3px solid red; */
 
     position: absolute;
-    top: 140px;
+    top: 142.5px;
+    /* top: 25vw; */
     padding: 20px;
     margin: 0 auto;
     z-index: 5;
@@ -553,7 +593,7 @@ body {
 
 }
 
-#content {
+.content {
     /* outline: 3px solid blue; */
 
     /* margin: 0; */
@@ -587,7 +627,7 @@ body {
     margin-left: 13vw;
     margin-right: 13vw;
     border-bottom: 3px solid black;
-    border-radius: 10px;
+    /* border-radius: 10px; */
 }
 
 #section-1 {
@@ -683,6 +723,7 @@ body {
         margin: auto;
         /* width: 100%; */
         text-align: center;
+        /* font-size: min(50px, 5vw); */
         font-size: 50px;
         font-weight: bold;
         /* text-decoration: underline; */
@@ -789,15 +830,15 @@ body {
     /* height: 30%; */
     /* display: inline-block; */
     /* margin: 40px auto; */
-    /* box-shadow: 0 10px 60px rgba(0, 0, 0, 0.5); */
-    box-shadow: 6px 6px 10px rgba(0, 0, 0, 0.9);
+    box-shadow: 0 10px 60px rgba(0, 0, 0, 0.5);
+    /* box-shadow: 6px 6px 10px rgba(0, 0, 0, 0.9); */
     border-radius: 5px;
     /* top: 50vh; */
     /* position: relative; */
     position: absolute;
     top: 50%;
     left: 60%;
-    transform: translate(0, -38.5%);
+    transform: translate(0, -40%);
     padding: 0;
     /* margin: auto 10vw auto 5vw; */
     float: right;
@@ -812,6 +853,10 @@ body {
     border-radius: 5px;
     /* box-shadow: 6px 6px 10px rgba(0, 0, 0, 0.9); */
     width: 23vw;
+}
+
+.doc-size-tab {
+    display: none;
 }
 
 #section1 {
@@ -900,7 +945,14 @@ h4 {
 }
 
 footer {
-    /* margin-top: 50vh; */
+    position: relative;
+    /* margin-top: calc(23vh - 160px); */
+    width: 100%;
+    height: 170px;
+
+    /* background-attachment: fixed; */
+    /* top: calc(100vh - 160px); */
+    /* bottom: 0; */
     padding: 20px;
     background-color: #574240;
     text-align: center;
@@ -908,8 +960,14 @@ footer {
     border-top: 3px solid #959980;
 }
 
+.social {
+    margin: 20px;
+}
+
 .social a {
     margin: 0 5px;
+    text-decoration: none;
+    color: black;
 }
 
 .social a img {
@@ -947,24 +1005,20 @@ footer {
         display: block;
     }
 
-    /* header */
-    .logo {
-        float: none;
-        width: auto;
-    }
-
-    nav ul {
-        /* float: none; */
-        /* width: auto; */
+    /* nav */
+    .nav-text {
+        margin: auto;
     }
 
     /* banner */
     .banner {
-        height: 75vh;
+        height: 70vw;
+        max-height: 75vh;
+        /* min-height: 60vh; */
     }
 
     .banner img {
-        height: 76vh;
+        /* height: 76vh; */
     }
 
     .banner-text {
@@ -986,20 +1040,15 @@ footer {
     .banner-text hr {
         background-color: black !important;
         height: 5px;
-        /* width: 50%; */
         opacity: 1;
         padding: 0;
         margin: 0;
         margin-top: 10px;
-        /* margin-left: auto; */
-        /* margin-right: auto; */
     }
     
     .banner-text p {
         display: none;
-        /* width: 50%; */
         font-size: 40px;
-        /* text-decoration: overline; */
         margin: 0;
         padding: 0;
         padding-bottom: 5px;
@@ -1010,18 +1059,38 @@ footer {
     }
 
     /* main */
+
     .inverted-banner {
-        /* width: 100%;
-        height: 50%;
-        background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.5)), url(../images/Krivan-Peak-Reduced-Inverted.jpg);
-        position: absolute;
-        overflow: hidden;
-        z-index: -1; */
+        min-height: calc(100vh - (min(70vw, 75vh)) - 160px);
+    }
+
+    /* about */
+    .about {
+        margin: auto;
+    }
+
+    #section0 .text-field {
+        width: 100%;
+        margin: auto;
+        float: none;
+    }
+    
+        .image-field {
+        display: none;
+        /* width: fit-content; */
+        /* box-shadow: 0 10px 60px rgba(0, 0, 0, 0.5); */
+        /* box-shadow: none; */
+        /* left: 60vw; */
+    }
+    
+    .image-field img {
+        /* border: 3px solid black; */
+        /* border-radius: 0px; */
+        /* width: 100%; */
     }
 
     /* footer */
     footer {
-        margin-top: 50vh;
         padding: 20px;
         background-color: #574240;
         text-align: center;
@@ -1030,7 +1099,91 @@ footer {
     }
 }
 
-@media(max-width:750px) {
+@media (max-width:1200px) {
+    /* main */
+    
+    .view {
+        margin-left: 13vw;
+        margin-right: 13vw;
+        /* margin: 0; */
+        border-bottom: 3px solid black;
+        /* border-radius: 10px; */
+    }
+    
+    .doc-size-full {
+        display: none;
+    }
+    
+    .about {
+        margin: auto;
+    }
+    
+    #section0 .text-field {
+        width: 100%;
+        margin: auto;
+        float: none;
+    }
+    
+    .image-field {
+        display: none;
+        /* width: fit-content; */
+        /* box-shadow: 0 10px 60px rgba(0, 0, 0, 0.5); */
+        /* box-shadow: none; */
+        /* position: relative; */
+        /* top: auto; */
+        /* left: auto; */
+        /* margin: auto; */
+        /* transform: translate(0, 0); */
+        /* float: none; */
+    }
+    
+    .doc-size-tab {
+        display: block;
+        background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(../images/Custom-rulled-paper.PNG);
+        background-repeat: no-repeat;
+        background-size: cover;
+        border-radius: 10px;
+        box-shadow: 0 10px 60px rgba(0, 0, 0, 0.5);
+        padding: 30px;
+        margin: 2vw;
+        padding-bottom: 0;
+        
+    }
+    
+    #section1 .text-field {
+        text-align: center;
+        padding: 15px;
+        border: 3px solid black;
+        border: none;
+
+       > hr {
+            opacity: 1;
+       }
+    }
+    
+    #section-1 .text-field {
+        text-align: center;
+        padding: 15px;
+        border: 3px solid black;
+        border: none;
+
+       > hr {
+            opacity: 1;
+       }
+    }
+    
+    #section1 img {
+        border-radius: 10px;
+        box-shadow: none;
+    }
+    
+    #section-1 img {
+        border-radius: 10px;
+        box-shadow: none;
+    }
+}
+
+@media(max-width:800px) {
     /* info */
     #mobile-indicator {
         display: block;
@@ -1038,12 +1191,12 @@ footer {
 
     /* header */
     .logo {
-        float: none;
+        /* float: none; */
     }
     
     .logo h1 {
-        margin: 10px;
-        font-size: 20px;
+        /* margin: 10px; */
+        /* font-size: 20px; */
     }
 
     nav ul {
@@ -1074,33 +1227,92 @@ footer {
 
     /* banner */
     .banner {
-        height: 50vh;
+        /* height: 50vh; */
     }
     
     .banner img {
-        height: 50%;
+        /* height: 50%; */
     }
     
     .banner-text {
-        padding: 50px 10px;
+        /* padding: 50px 10px; */
+        /* font-size: 40px; */
     }
 
     .banner-text h1 {
-        font-size: 30px;
+        /* font-size: 30px; */
+        font-size: 50px;
     }
     
     .banner-text p {
-        font-size: 20px;
+        font-size: 30px;
     }
 
     /* main */
+
+    /* content */
+    .view {
+        margin-left: 3vw;
+        margin-right: 3vw;
+        /* border-bottom: 3px solid black; */
+        /* border-radius: 10px; */
+    }
     
+    .title-bar {
+        margin-right: 3vw;
+        margin-left: 3vw;
+        position: relative;
+        /* margin-top: 20px; */
+        /* margin: auto; */
+        /* border: 3px solid black; */
+        /* border-top: 3px linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.9)); */
+        /* border-bottom: 3px solid linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.9)); */
+        border-top: 3px solid black;
+        /* border-bottom: 3px solid black; */
+        /* border-left: 3px solid black; */
+        /* border-right: 3px solid black; */
+        /* border: 2px solid #959980; */
+        backdrop-filter: blur(1px);
+        /* border-radius: 10px; */
+        /* width: 75%; */
+        /* text-align: center; */
+        /* color: black; */
+        /* border-top: 3px solid #959980; */
+        /* border-bottom: 3px outset #959980; */
+        transition: border-radius 0.4s;
+        /* -webkit-transition: transition none; */
+    
+    
+        > h1 {
+            /* color: rgba(50, 60, 50, 0.9); */
+            /* padding: 325px; */
+            margin: auto;
+            /* width: 100%; */
+            text-align: center;
+            /* font-size: min(50px, 5vw); */
+            font-size: 50px;
+            font-weight: bold;
+            /* text-decoration: underline; */
+            /* text-shadow: #6d544d 1px 1px 2px; */
+        }
+    
+    }
+
+    .arrow-button {
+        &#left-arrow {
+            left: 10%;
+        }
+        &#right-arrow {
+            right: 10%;
+        }
+    }
+
     /* footer */
     footer {
-        font-size: 10px;
+        /* font-size: 10px; */
     }
 
     .social a img {
-        width: 20px;
+        /* width: 20px; */
     }
 }

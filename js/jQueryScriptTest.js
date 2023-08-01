@@ -1,5 +1,7 @@
 $(document).ready(function () {
     arrowControls();
+    barNav();
+    $('#bar0').addClass('active');
     $('#left-arrow').attr('data-state', '');
     $('#right-arrow').attr('data-state', '');
 });
@@ -75,7 +77,7 @@ function slideController(moveVal) {
         return;
     }
     
-    const targetViewNum = curViewNumber + moveVal;
+    const targetViewNum = curViewNumber - moveVal;
     
     if (targetViewNum > views.length/2 || targetViewNum < views.length/2 * -1) {
         return;
@@ -83,25 +85,19 @@ function slideController(moveVal) {
 
     curViewIndex += moveVal;
     console.log('curViewIndex: ' + curViewIndex);
+
+    $('#bar' + curViewNumber).removeClass('active');
+
     if (curViewIndex === views.length-1) {
         $('#left-arrow').attr('data-state', 'disabled');
-        // $('#left-arrow').addClass('arrow-in');
-        // $('#left-arrow').removeClass('arrow-out');
+        $('#right-arrow').attr('data-state', '');
     } else if (curViewIndex === 0) {
         $('#right-arrow').attr('data-state', 'disabled');
+        $('#left-arrow').attr('data-state', '');
     } else {
         $('#left-arrow').attr('data-state', '');
-        // $('#left-arrow').addClass('arrow-out');
-        // $('#left-arrow').removeClass('arrow-in');
         $('#right-arrow').attr('data-state', '');
     }
-    
-    // Close view
-    // if (isSliderOpen) {
-    //     infoBoxSlider(curViewNumber, function() {
-            
-    //     });
-    // }
 
     for (let i = 0; i < posData.length; i++) {
         posData[i] += (moveVal * 100);
@@ -111,91 +107,6 @@ function slideController(moveVal) {
     // posData = (moveVal * 100) + posData;
     // const shift = posData + '%'
     console.log('Current: ' + curViewNumber + ' Target: ' + targetViewNum);
-
-    // $('#section1').css("left", "calc(" + $('#section1').css('left') + " + " + shift + ")");
-
-    // $('#section-2').animate({left: `calc(${$('#section-2').css('left')} + ${shift})`}, 1000);
-
-    // console.log("Section-2: " + `calc(${$('#section' + '-2').css('left')} + ${shift})`);
-    // console.log("Section2: " + `calc(${$('#section' + '2').css('left')} + ${shift})`);
-    // console.log("Section0: " + `calc(${$('#section' + '0').css('left')} + ${shift})`);
-    // console.log($('#section' + '0').css('left'))
-
-// $('section' + '0').css('--leftValue', `calc(${$('#section' + '0').css('left')} + ${shift})`);
-
-// document.getElementById("section0").style.setProperty = ("--leftValue", `calc(${$('#section' + '0').css('left')} + ${shift})`);
-
-    // let leftVal = `calc(${$('#section' + '0').css('left')} + ${shift})`;
-    // let leftVal = ;
-
-    // $('#section' + '0').animate({
-    //     left: shift,
-    //     marginLeft: calcMarginLeft(0, targetViewNum),
-    //     marginRight: calcMarginRight(0, targetViewNum)
-    // }, 1000, function() {
-    //     // $('#section' + '0').css({
-    //     //     "left": `${$('#section' + '0').css('left')}`
-    //     // });
-    // });
-
-    // console.log($('#section' + '0').css('left'))
-
-
-    // $('#section' + '-2').animate({
-    //     left: `calc(${$('#section' + '-2').css('left')} + ${shift})`,
-    //     marginLeft: calcMarginLeft(-2, targetViewNum),
-    //     marginRight: calcMarginRight(-2, targetViewNum)
-    // }, 1000);
-    // $('#section' + '-1').animate({
-    //     left: `calc(${$('#section' + '-1').css('left')} + ${shift})`,
-    //     marginLeft: calcMarginLeft(-1, targetViewNum),
-    //     marginRight: calcMarginRight(-1, targetViewNum)
-    // }, 1000);
-    // $('#section' + '0').animate({
-    //     left: `calc(${$('#section' + '0').css('left')} + ${shift})`,
-    //     marginLeft: calcMarginLeft(0, targetViewNum),
-    //     marginRight: calcMarginRight(0, targetViewNum)
-    // }, 1000, function() {
-    //     $('#section' + '0').css("left", `calc(${$('#section' + '0').css('left')} + ${shift})`);
-    // });
-    // $('#section' + '1').animate({
-    //     left: `calc(${$('#section' + '1').css('left')} + ${shift})`,
-    //     marginLeft: calcMarginLeft(1, targetViewNum),
-    //     marginRight: calcMarginRight(1, targetViewNum)
-    // }, 1000);
-    // $('#section' + '2').animate({
-    //     left: `calc(${$('#section' + '2').css('left')} + ${shift})`,
-    //     marginLeft: calcMarginLeft(2, targetViewNum),
-    //     marginRight: calcMarginRight(2, targetViewNum)
-    // }, 1000);
-    
-
-
-    // $('#section' + '2').animate({
-    //     left: `calc(${$('#section' + '2').css('left')} + ${shift})`,
-    //     marginLeft: calcMarginLeft(2, targetViewNum),
-    //     marginRight: calcMarginRight(2, targetViewNum)
-    // }, 1000);
-    // $('#section' + '1').animate({
-    //     left: `calc(${$('#section' + '1').css('left')} + ${shift})`,
-    //     marginLeft: calcMarginLeft(1, targetViewNum),
-    //     marginRight: calcMarginRight(1, targetViewNum)
-    // }, 1000);
-    // $('#section' + '0').animate({
-    //     left: `calc(${$('#section' + '0').css('left')} + ${shift})`,
-    //     marginLeft: calcMarginLeft(0, targetViewNum),
-    //     marginRight: calcMarginRight(0, targetViewNum)
-    // }, 1000);
-    // $('#section' + '-1').animate({
-    //     left: `calc(${$('#section' + '-1').css('left')} + ${shift})`,
-    //     marginLeft: calcMarginLeft(-1, targetViewNum),
-    //     marginRight: calcMarginRight(-1, targetViewNum)
-    // }, 1000);
-    // $('#section' + '-2').animate({
-    //     left: `calc(${$('#section' + '-2').css('left')} + ${shift})`,
-    //     marginLeft: calcMarginLeft(-2, targetViewNum),
-    //     marginRight: calcMarginRight(-2, targetViewNum)
-    // }, 1000);
 
 
     views.forEach(viewNum => {
@@ -218,7 +129,18 @@ function slideController(moveVal) {
     });
 
     curViewNumber = targetViewNum;
+    $('#bar' + curViewNumber).addClass('active');
 
 }
 
+function barNav() {
+    views.forEach(viewNum => {
+        $('#bar' + viewNum).click(function (e) { 
+            e.preventDefault();
 
+            if (curViewNumber != viewNum) {
+                slideController(curViewNumber-viewNum);
+            }
+        });
+    });
+}

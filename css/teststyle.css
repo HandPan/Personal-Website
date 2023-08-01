@@ -57,35 +57,9 @@
     100% {transform: translate(0, var(--animEndHeight)) rotate(var(--animEndRotation));}
 }
 
-/* @keyframes arrow-top {
-    0% {transform: translate(0, -6px) rotate(-45deg);}
-    50% {transform: translate(0, -10px) rotate(0deg);}
-    100% {transform: translate(0, 2px);}
-}
-
-@keyframes arrow-top-reverse {
-    0% {transform: translate(0, 2px);}
-    50% {transform: translate(0, -10px) rotate(0deg);}
-    100% {transform: translate(0, -6px) rotate(-45deg);}
-} */
-
-/* @keyframes arrow-bottom {
-    0% {transform: translate(0, 5px) rotate(45deg);}
-    50% {transform: translate(0, 10px) rotate(0deg);}
-    100% {transform: translate(0, -2px);}
-}
-
-@keyframes arrow-bottom-reverse {
-    0% {transform: translate(0, -2px);}
-    50% {transform: translate(0, 10px) rotate(0deg);}
-    100% {transform: translate(0, 5px) rotate(45deg);}
-} */
-
 .arrow-button {
-    /* outline: 2px solid red; */
     position: absolute;
-    /* top: 25px; */
-    top: 35%;
+    top: 20%;
     padding: 20px;
     margin: 0 auto;
     z-index: 5;
@@ -144,8 +118,6 @@
 
             :last-child {
 
-                /* animation: arrow-bottom 0.7s ease-in-out forwards; */
-
                 --animStartHeight: 5px;
                 --animMidHeight: 10px;
                 --animEndHeight: -2px;
@@ -161,8 +133,6 @@
 
             :first-child {
 
-                /* animation: arrow-top-reverse 0.7s ease-in-out forwards; */
-
                 --animStartHeight: 2px;
                 --animMidHeight: -10px;
                 --animEndHeight: -6px;
@@ -174,8 +144,6 @@
             }
 
             :last-child {
-
-                /* animation: arrow-bottom-reverse 0.7s ease-in-out forwards; */
 
                 --animStartHeight: -2px;
                 --animMidHeight: 10px;
@@ -192,7 +160,6 @@
     &#right-arrow {
         &[data-state=disabled] {
             :first-child {
-                /* animation: arrow-top 0.7s ease-in-out forwards; */
 
                 --animStartHeight: -6px;
                 --animMidHeight: -10px;
@@ -204,7 +171,6 @@
             }
 
             :last-child {
-                /* animation: arrow-bottom 0.7s ease-in-out forwards; */
 
                 --animStartHeight: 5px;
                 --animMidHeight: 10px;
@@ -274,43 +240,10 @@
     }
 }
 
-.arrow {
-    border: 3px solid black;
-    border-width: 0 5px 5px 0;
-    display: inline-block;
-    padding: 10px;
-    /* transition: transform 0.5s, border-radius 0.2s, border 0.2s cubic-bezier(0.1, 0.1, 1, 0.1); */
-    /* transition: transform 0.5s, border-radius 0.2s, border 0s 0.1s; */
-    transition: transform 0.5s, border-radius 0.2s, border 0s 0.2s, width 0.5s 0.2s;
-    /* transition: transform 0.5s, border-radius 0.2s; */
-    /* opacity: 0; */
-    /* overflow: hidden; */
-}
-
-.arrow-button:hover .arrow {
-    &[data-state=''] {
-        border-radius: 0 10px 0 10px;
-        cursor: pointer;
-    }
-}
-
 .right {
     position: absolute;
     width: 25px;
     height: 5px;
-}
-
-#right {
-    transform: rotate(-45deg);
-
-    &[data-state=disabled] {
-        cursor: default;
-        border-width: 0px 0 5px 0;
-        transform: rotate(450deg);
-        width: 10px;
-        /* border: none; */
-        cursor: default;
-    }
 }
 
 .left {
@@ -325,28 +258,24 @@
     /* border-radius: 3px; */
 }
 
-#left {
-    transform: rotate(135deg);
-
-    &[data-state=disabled] {
-        border-width: 5px 0 5px 0;
-        transform: rotate(-225deg);
-        /* width: 10px; */
-        /* border: none; */
-        cursor: default;  
-    }
-}
-
 body {
     display: flex;
     justify-content: center;
+    
 }
 
 .content-wrapper {
-    position: relative;
-    margin-top: 15%;
-    width: 25%;
+    position: absolute;
+    margin: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    /* width: 25%; */
+    
+}
+
+.carousel {
     /* border: 3px solid black; */
+    overflow: hidden;
     padding: 20px;
     box-shadow: 0 10px 60px rgba(0, 0, 0, 0.5);
     border-radius: 10px;
@@ -363,7 +292,8 @@ body {
 }
 
 .section {
-    /* outline: 3px solid black; */
+    /* outline: 3px solid beige; */
+
     background-color: aliceblue;
     border-radius: 5px;
     text-align: center;
@@ -418,4 +348,44 @@ body {
     /* margin-left: 0; */
     /* margin-right: -100%; */
     margin-right: 0;
+}
+
+.bars {
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.bar-wrapper {
+    margin: 10px 5px;
+    width: 7%;
+    padding: 10px;
+    transition: 0.5s;
+}
+
+hr {
+    color: black;
+    border: 3px solid black;
+    border-radius: 3px;
+
+}
+
+.bar-wrapper:hover {
+    opacity: 50%;
+    width: 10%;
+    cursor: pointer;
+
+    > hr {
+        box-shadow: 0 10px 60px rgba(0, 0, 0, 0.5);
+    }
+}
+
+.active {
+    opacity: 50%;
+    width: 10%;
+    cursor: pointer;
+
+    > hr {
+        box-shadow: 0 10px 60px rgba(0, 0, 0, 0.5);
+    }
 }

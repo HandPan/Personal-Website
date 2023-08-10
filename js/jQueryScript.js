@@ -169,7 +169,12 @@ function slideController(moveVal, callback) {
     if (targetViewNum > views.length/2 || targetViewNum < views.length/2 * -1) {
         return;
     }
-    
+
+
+    $('#link').removeClass('active-link');
+    $('#link' + curViewNumber).removeClass('active-link');
+    $('#link' + targetViewNum).addClass('active-link');
+
     curViewIndex -= moveVal;
     if (curViewIndex === views.length-1) {
         $('#right-arrow').attr('data-state', 'disabled');
@@ -286,9 +291,6 @@ function navController() {
     views.forEach(viewNum => {
         $('#link' + viewNum).click(function (e) {
             
-            $('#link').removeClass('active-link');
-            $('#link' + curViewNumber).removeClass('active-link');
-            $($(this)).addClass('active-link');
             const targetDiv = $($(this).attr('href'));
             if (targetDiv.length) {
                 $('html, body').animate({

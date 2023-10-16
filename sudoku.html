@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sudoku Solver</title>
+
+    <!-- Styles -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/styleindex.css">
+    <link rel="stylesheet" type="text/css" href="css/styleproject.css">
+    <link rel="stylesheet" type="text/css" href="css/sudoku.css">
+    <link rel="shortcut icon" href="images\Martian_Favicon.png" type="image/x-icon">
+
+    <!-- Scripts -->    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script type="text/JavaScript" src="js/sudoku.js"></script>
+    <!-- <script src="js/jQueryScript.js"></script> -->
+    
+</head>
+<body>
+
+    <header>
+        <nav class="navbar navbar-expand-sm fixed-top">
+            <div class="container-fluid nav-text">
+                <a href="index.html" class="navbar-brand logo"><h1>Roger Jacobsen</h1></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                    <ul class="navbar-nav">
+                        <li class="nav-item h3"><a class="nav-link" id="link" href="index.html">Home</a></li>
+                        <li class="nav-item h3"><a class="nav-link active-link" href="sudoku.html">Sudoku</a></li>                        
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="project-wrapper">
+        <div class="mobile-warning" id="mobile-warning">
+            <h1>This project is not fully supported on mobile devices and may contain slight overlapping. Your experience may vary.</h1>
+            <button type="button" onclick="hideWarning()">Continue</button>
+        </div>
+
+        <div class="mobile-warning-blur">
+            <div class="content">
+                <h1 style="text-align: center;"">Sudoku Solver</h1>
+                <h3 style="text-align: center;">Information Theory aka. Entropy</h3>
+                
+                    <div class="center-game">
+                        <div id="mainView">
+                            <div id="inputOptions"></div>
+                            <div id="sudokuGrid"></div>
+                            <div id="displayValues" class="fade-in"></div>
+                        </div>
+                    </div>
+            
+                <div class="flex-across">
+                    <div class="flex-down">
+                        <button type="button" onclick="genFromList()">Generate From JSON</button>
+                        <button type="button" onclick="genBoard()">Generate New</button>
+                        <button type="button" onclick="clearBoard()">Clear Board</button>
+                    </div>
+                    <div class="flex-down">
+                        <button type="button" onclick="solveSingulars()">Solve Singulars</button>
+                        <button type="button" onclick="solveDuos()">Solve Pairs</button>
+                        <button type="button" onclick="solveRecursive()">Solve!</button>
+                    </div>
+                    <div class="flex-down">
+                        <button id="entropy-button" type="button" onclick="toggleEntropy()">Toggle Entropy</button>
+                        <button type="button" onclick="checkFullErrors()">Check Conflicts</button>
+                    </div>
+                </div>
+    
+                <div class="text-section">
+                    <h1>Project Description</h1>
+                    <p>This project was a culmination of learning and interest in procedural generation algorithms. The focused algorithm here is Wave Function Collapse.</p>
+                    <h3>Wave Function Collapse</h3>
+                    <p>Wave Function Collapse works by using pseudo-random choices on a set of predetermined options. For each choice there is a potentially limited number of options often decided by its neighbors.</p>
+                    <p>In the case of Sudoku, each tile has a set of possibilities it can be at that given moment. The count of these possibilities is its entropy number and on a blank board all tiles have an entropy of 9 as each tile can be any number 1-9. Now go ahead and try choosing a tile and possibility, if you have entropy toggled on you will see that all squares contained in the column, row, and sub-square will have their entropy updated to one less. Per rules of the puzzle, these tiles can no longer contain your choice and as such their entropy is updated.</p>
+                    <p>This is essentially how Wave Function Collapse works. Depending on where it is used a developer will set up constraints of each choice to be applied to neighbors upon a decision. At which point states are randomly picked from the entropy set for each tile, updating the entropy set for those related, and then repeating the process on the next tile.
+                    </p>
+                    <p>A good example is the Solve Singulars function. In easier Sudoku puzzles some choices are freely given by using related neighbors to reduce your options, or rather entropy, to one. This function will find all tiles with a entropy of one, "solve" that tile and update all its neighbors with its new knowledge. If this update reduces any other entropies to one it will repeat the same actions on that tile as well. Eventually resulting in either a solution or a requirement for more clever methods/random chance.                    
+                    </p>
+                    <h3>Image Generation</h3>
+                    <p>Another example can be in randomized image generation. Say a game developer wants to build a randomized backdrop to a sewer level in their 2D game. For this case we decide on a set of 5 small square images. One base wall square, a straight pipe square, a corner pipe square, a T-pipe square, and finally a mossy wall square. To transform these into a full image we then add some constraints. Lets say a T-pipe needs to have either a straight pipe or a corner pipe connected on its open sides. We'll do the same for the corner and straight pipes. However on these we also add constraints for the non-pipe faces allowing for the neighboring of other non-pipe faces and tiles. The base tile being base can simply neighbor any non-open pipe face tile but lets say we want to do something special for the mossy version. We want our backdrop to have large mossy patches so we decide to give a higher chance that a mossy patch will neighbor another. Lets say a moss tile gives an extra 50% probability that a neighbor is another moss tile (if possible) with the other 50% being something else.</p>
+                    <p>Now that we have our constraints we can divide our image bed into a grid of squares like in our Sudoku board, each with full entropy. We can then choose a square on the board and randomly assign one of the 5 options. This now triggers a reduction in future possibilities for all 4 surrounding sides. If this process continues with one of the tiles neighbors eventually a fully deceivable image will be displayed for use in our game complete with large mossy patches and long pipe chains spanning the image.</p>
+                    <p>Granted there are some more technical parts I left out but I believe this is a good simplification of the task at hand.</p>
+    
+                    <h1>Documentation</h1>
+                    <h3>Board</h3>
+                    <p>The board displays the current state and accepts input from the user through clicking on an unsolved tile. If a tile is selected the user can then choose an option from the left column of available possibilities which will be filled in on the puzzle board.</p>
+                    <p>Subsequently when a user hovers their mouse over a tile, a display to the right of the board is updated showing greater information and behind the scenes about that specific tile.</p>
+    
+                    <h3>Generate From JSON and Generate New</h3>
+                    <p>These options are pretty self explanatory. The Generate New function builds a new random board on the spot starting with a solution and working backwards to give something solvable. Generate From JSON takes from a collection of 1000 pregenerated boards for increased speed on loading new boards.</p>
+    
+                    <h3>Solve Singulars</h3>
+                    <p>This function scans the board for any tiles with an entropy of one and confirms its solution while updating the entropy of all neighboring tiles being those in the same column, row, and subsquare. While updating if any squares are reduced to one the process is repeated starting from that square.</p>
+                    <p>Eventually this scans the entire board resulting in there being no tiles left with a single possibility.</p>
+    
+                    <h3>Solve Pairs</h3>
+                    <p>The name of this function is a little deceiving as it does not actually get a solution to a pair of items. Rather this function uses an interesting trick in that if two tiles in the same column, row, or subsquare have the same possibilities and an entropy of two, all other tiles in that column, row, or subsquare cannot be either of those possibilities.</p>
+                    <p>Other than that this function works similarly to Solve Singulars in that it scans the board looking for these pairs and then updating neighbors if a pair is found, calling Solve Pairs or Solve Singulars if any new pairs or single entropy tiles are produced.</p>
+    
+                    <h3>Solve</h3>
+                    <p>This function runs the previous two then if the puzzle is still not solved a choice is made on the lowest entropy option left followed by updating neighbors as such and doing the same for any singulars. If an error is found it reverts to where the choice was made and tries again with a different choice, also known a recursion.</p>
+                    <p>Originally I wanted to do this project without using recursion though after some time in the project and research I realized that that would be infeasible. The functions required to solve without using recursion would likely take as long if not longer than just using recursion.</p>
+                    <p>If this function is used and squares are listed red or the Check Conflicts option returns red, a solution is not possible from the position in which the solve was initiated and the board needs to be cleared. At some point I plan to add an undo function to user choice but for now any choices made are permanent until fully cleared.</p>
+    
+                    <h3>Toggle Entropy</h3>
+                    <p>Toggle Entropy toggles a red number the displaying the entropy of each non-solved tile. ie. If a tile can be 1, 4, 5, and 7 then the entropy number will display 4 signifying the tile has 4 possibilities at this moment.</p>
+    
+                    <h3>Check Conflicts</h3>
+                    <p>This is mostly a test function that scans the board for any incorrect tiles. If any are found the conflicting tiles are highlighted in red.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+
+        <div class="social">
+
+            <span><a href="https://www.linkedin.com/in/rjacobsen6/"><img src="images/social/linkedin.png" alt="LinkedIn"><span class="dispText"> | rjacobsen6</span></a></span>
+
+            <span><a href="mailto:rgj123890@gmail.com"><img src="images/social/envelope.png" alt="Email Me"><span class="dispText"> | rgj123890@gmail.com</span></a></span>
+
+            <span><a href="https://github.com/HandPan"><img src="images/social/github.png" alt="Github"><span class="dispText"> | HandPan</span></a></span>
+
+            <span><a href="https://codepen.io/Roger-Jacobsen"><img src="images/social/codepen.png" alt="Codepen"><span class="dispText"> | Roger Jacobsen</span></a></span>
+        </div>
+
+        <p>
+            © 2023 Roger Jacobsen. All rights reserved.
+        </p>
+
+    </footer>
+    
+</body>
+</html>

@@ -6,7 +6,6 @@ $(document).ready(function () {
     $(document).click(function (event) {
         let $target = $(event.target);
         if (!$target.closest('#inputOptions').length && !$target.closest('#sudokuGrid').length) {
-            // console.log('Clicked Off');
             clearSelection();
         }
     });
@@ -84,7 +83,6 @@ function makeGrid() {
 
         gridActive = true;
     }
-    console.log(squares);
 }
 
 function makeOptions() {
@@ -273,7 +271,6 @@ function solveDuos() {
 }
 
 function solve(origin, frameOfReference) {
-    console.log("Solve Running SolvedSquares: " + solvedSquares);
     let searchEntropy = 2;
     let position = origin;
 
@@ -299,14 +296,12 @@ function solve(origin, frameOfReference) {
                         }
                         if (solveOne(curSquare, workingFoR, true, true)) {
                             if (solvedSquares >= 81) {
-                                console.log("SOLVED!!! " + solvedSquares);
                                 squares = workingFoR;
                                 return true;
                             }
                             if(solve(((position+1) % 81), workingFoR)) {
                                 return true;
                             } else {
-                                console.log("Solve Failed");
                                 workingFoR = copyFrameOfReference(frameOfReference);
                                 curSquare = workingFoR[position];
                                 curSquare.entropy = entropyMem--;
@@ -318,11 +313,9 @@ function solve(origin, frameOfReference) {
                                 continue;
                             }
                         } else {
-                            console.log("solveOne Failed on: " + curSquare.id);
                             workingFoR = copyFrameOfReference(frameOfReference);
                             curSquare = workingFoR[position];
                             curSquare.entropy = entropyMem--;
-                            // console.log(curSquare.possi);
                             for (let j = 0; j < 9; j++) {
                                 curSquare.possi[j] = possiMem[j];
                             }
@@ -358,7 +351,6 @@ function solveRecursive() {
 }
 
 function solveOne(square, frameOfReference, recurse, testing) {
-    // console.log("Order: " + square.id);
     if (square.entropy != 1) {
         return;
     }
@@ -368,9 +360,6 @@ function solveOne(square, frameOfReference, recurse, testing) {
         if (square.possi[k]) {
             possiCount++;
         }
-    }
-    if (possiCount > 1) {
-        console.log('=================================================================');
     }
 
     if (square.cellValue == 0) {
@@ -386,9 +375,6 @@ function solveOne(square, frameOfReference, recurse, testing) {
         square.cellDisplay.style.backgroundColor = null;
         solvedSquares++;
         
-        if (!testing) {
-            // entropyDisplay.innerHTML = " " + (81 - solvedSquares);
-        }
     }
 
     // Rows
@@ -650,7 +636,7 @@ function clearSelection() {
 
 function checkFullErrors() {
     squares.forEach(square => {
-        console.log("Error check returned: " + checkErrors(square, true));
+        checkErrors(square, true);
     });
 }
 
@@ -665,8 +651,6 @@ function checkErrors(square, displayErrors) {
     let end_i = i + 9;
     while (i < end_i) {
         if (squares[i].id != square.id && squares[i].cellValue == square.cellValue && squares[i].cellValue != 0) {
-            console.log("Rows:");
-            console.log(squares[i].id + ", " + square.id);
             if (displayErrors) {
                 square.cellDisplay.classList.add('incorrect');
                 squares[i].cellDisplay.classList.add('incorrect');
@@ -683,8 +667,6 @@ function checkErrors(square, displayErrors) {
     let end_j = j + 73;
     while (j < end_j) {
         if (squares[j].id != square.id && squares[j].cellValue == square.cellValue && squares[j].cellValue != 0) {
-            console.log("Columns:");
-            console.log(squares[j].id + ", " + square.id);
             if (displayErrors) {
                 square.cellDisplay.classList.add('incorrect');
                 squares[j].cellDisplay.classList.add('incorrect');
@@ -701,8 +683,6 @@ function checkErrors(square, displayErrors) {
     let end_k = k + 21;
     while (k < end_k) {
         if (squares[k].id != square.id && squares[k].cellValue == square.cellValue && squares[k].cellValue != 0) {
-            console.log("Squares:");
-            console.log(squares[k].id + ", " + square.id);
             if (displayErrors) {
                 square.cellDisplay.classList.add('incorrect');
                 squares[k].cellDisplay.classList.add('incorrect');
@@ -817,13 +797,4 @@ async function genFromList() {
             }
         }
     }
-}
-
-function genList() {
-    let totalOut = new Array(1000);
-    for (let i = 0; i < 1000; i++) {
-        totalOut[i] = genBoard();
-    }
-
-    console.log(JSON.stringify(totalOut));
 }

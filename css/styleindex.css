@@ -496,13 +496,9 @@ a > button:hover {
 #section0 {
     text-align: center;
     color: black;
-    left: 0;
-    margin-left: 0;
-    margin-right: 0;
-}
-
-.about-border {
-    padding: 20px;
+    /* left: 0; */
+    /* margin-left: 0; */
+    /* margin-right: 0; */
 }
 
 .about {
@@ -510,8 +506,12 @@ a > button:hover {
     background-repeat: no-repeat;
     background-size: cover;
     border: 3px solid black;
-    margin-right: 8vw;
-    padding: 20px;
+    /* margin-right: 8vw; */
+    padding: 30px;
+    /* border-spacing: 0 30px; */
+    margin: 30px;
+    margin-right: 2vw;
+    margin-left: 2vw;
     border-radius: 5px;
 }
 
@@ -519,9 +519,9 @@ a > button:hover {
     padding: 20px;
     border-radius: 10px;
     position: relative;
-    width: 70%;
-    margin-left: 10px;
-    float: left;
+    /* width: 70%; */
+    /* margin-left: 10px; */
+    /* float: left; */
 }
 
 #section0 .text-field h1 {
@@ -530,15 +530,15 @@ a > button:hover {
 }
 
 .image-field {
-    width: fit-content;
-    box-shadow: 0 10px 60px rgba(0, 0, 0, 0.5);
-    border-radius: 5px;
-    position: absolute;
-    top: 50%;
-    left: 60%;
-    transform: translate(0, -40%);
-    padding: 0;
-    float: right;
+    /* width: fit-content; */
+    /* box-shadow: 0 10px 60px rgba(0, 0, 0, 0.5); */
+    /* border-radius: 5px; */
+    /* position: absolute; */
+    /* top: 50%; */
+    /* left: 60%; */
+    /* transform: translate(0, -40%); */
+    /* padding: 0; */
+    /* float: right; */
 }
 
 .image-field img {
@@ -569,7 +569,7 @@ tr {
     background-repeat: no-repeat;
     background-size: cover;
     border-radius: 10px;
-    box-shadow: 0 10px 60px rgba(0, 0, 0, 0.5);
+    /* box-shadow: 0 10px 60px rgba(0, 0, 0, 0.5); */
 }
 
 td {
@@ -765,7 +765,7 @@ footer {
         background-repeat: no-repeat;
         background-size: cover;
         border-radius: 10px;
-        box-shadow: 0 10px 60px rgba(0, 0, 0, 0.5);
+        /* box-shadow: 0 10px 60px rgba(0, 0, 0, 0.5); */
         padding: 30px;
         margin: 2vw;
         padding-bottom: 0;

@@ -97,7 +97,7 @@ function infoBoxSlider(viewNum, callback) {
     // Close view
     if (isSliderOpen) {
         if (viewNum === 0 && !isTabletWidth() && !isMobileWidth()) {
-            $('#absimage').slideUp(500, function() {
+            // $('#absimage').slideUp(500, function() {
                 $('#view' + viewNum).slideUp(1000, function() {
                     $('#title-bar' + viewNum).css({
                         "border-bottom": "3px solid black",
@@ -107,7 +107,7 @@ function infoBoxSlider(viewNum, callback) {
                         callback();
                     }
                 });
-            });
+            // });
         }
 
         if (viewNum != 0 || isTabletWidth() || isMobileWidth()) {
@@ -139,7 +139,7 @@ function infoBoxSlider(viewNum, callback) {
         
         if (viewNum === 0 && !isTabletWidth() && !isMobileWidth()) {
             $('#view' + viewNum).slideDown(1000, function() {
-                $('#absimage').slideDown(500);
+                // $('#absimage').slideDown(500);
                 if (callback != null) {
                     callback();
                 }

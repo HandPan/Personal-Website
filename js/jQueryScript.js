@@ -1,10 +1,11 @@
 
-// Globals
+// Setup Controls
 let isSliderOpen = true;
 let curViewNumber = 0;
-let curViewIndex = 1;
-const views = [-1, 0, 1];
-let posData = [-100, 0, 100];
+let curViewIndex = 2;
+const startingViewIndex = 2;
+const views = [-2, -1, 0, 1];
+let posData = [-200, -100, 0, 100];
 let inMotion = false;
 
 function isTabletWidth() {
@@ -21,6 +22,9 @@ $(document).ready(function () {
         setUpTitleBars();
         arrowControls();
         navController();
+
+        let pdfHeight = $("#pdf").width() * 1.4375 > 1100 ? '1125px' : $("#pdf").width() * 1.4375 + 'px';
+        $("#pdf").prop("height", pdfHeight);
 });
 
 function rotatingSkills(i, l) {
@@ -90,10 +94,10 @@ function setUpTitleBars() {
 
 function infoBoxSlider(viewNum, callback) {
     // Check for extraneous values that don't exist
-    if (Math.abs(viewNum) > 3) {
+    if (Math.abs(viewNum) > views.length) {
         return;
     }
-        
+    console.log("Interacting with: " + viewNum);
     // Close view
     if (isSliderOpen) {
         if (viewNum === 0 && !isTabletWidth() && !isMobileWidth()) {
@@ -165,6 +169,7 @@ function slideController(moveVal, callback) {
     }
     
     const targetViewNum = curViewNumber - moveVal;
+    console.log("Target: " + targetViewNum + ' = ' + curViewNumber + ' - ' + moveVal);
     
     if (targetViewNum > views.length/2 || targetViewNum < views.length/2 * -1) {
         return;
@@ -194,7 +199,7 @@ function slideController(moveVal, callback) {
     views.forEach(viewNum => {
 
         $('#section' + viewNum).animate({
-            left: posData[viewNum + 1] + '%'
+            left: posData[viewNum + startingViewIndex] + '%'
         }, 1000, function() {
             if (viewNum === targetViewNum) {
                 infoBoxSlider(viewNum);

@@ -449,6 +449,10 @@ body {
     border-bottom: 3px solid black;
 }
 
+.viewMargin {
+    margin: 30px;
+}
+
 .title-bar {
     padding: 20px;
     color: black;
@@ -487,6 +491,12 @@ a > button:hover {
     border-radius: 10px;
 }
 
+#section-2 {
+    left: -200%;
+    margin-left: 0;
+    margin-right: -100%;
+}
+
 #section-1 {
     left: -100%;
     margin-left: 0;
@@ -509,7 +519,6 @@ a > button:hover {
     /* margin-right: 8vw; */
     padding: 30px;
     /* border-spacing: 0 30px; */
-    margin: 30px;
     margin-right: 2vw;
     margin-left: 2vw;
     border-radius: 5px;
@@ -553,6 +562,12 @@ a > button:hover {
 
 #section1 {
     left: 100%;
+    margin-left: -100%;
+    margin-right: 0;
+}
+
+#section2 {
+    left: 200%;
     margin-left: -100%;
     margin-right: 0;
 }
@@ -706,11 +721,6 @@ footer {
     /* main */
     .inverted-banner {
         min-height: calc(100vh - (min(70vw, 75vh)) - 160px);
-    }
-
-    /* about */
-    .about {
-        margin: auto;
     }
 
     #section0 .text-field {

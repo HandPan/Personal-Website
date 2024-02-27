@@ -1,7 +1,11 @@
+import $ from 'jquery';
+
 $(document).ready(function () {
     makeGrid();
     calcInitialEntropy();
     makeOptions();
+
+    createClickEvents();
 
     $(document).click(function (event) {
         let $target = $(event.target);
@@ -277,7 +281,7 @@ function solve(origin, frameOfReference) {
     let workingFoR = copyFrameOfReference(frameOfReference);
 
     let curSquare = workingFoR[position];
-    solvedSquaresMem = solvedSquares;
+    let solvedSquaresMem = solvedSquares;
     
     while (searchEntropy < 10) {
         do {
@@ -776,7 +780,7 @@ function fillCell(square) {
 
 async function genFromList() {
     if (!sudokuList) {
-        await fetch('json/puzzles.json')
+        await fetch('../json/puzzles.json')
             .then(response => response.json())
             .then(list => {
                 sudokuList = list.boards;
@@ -797,4 +801,31 @@ async function genFromList() {
             }
         }
     }
+}
+
+function createClickEvents() {
+    $('#genFromList').on('click', function () {
+        genFromList();
+    });
+    $('#genBoard').on('click', function () {
+        genBoard();
+    });
+    $('#clearBoard').on('click', function () {
+        clearBoard();
+    });
+    $('#solveSingulars').on('click', function () {
+        solveSingulars();
+    });
+    $('#solveDuos').on('click', function () {
+        solveDuos();
+    });
+    $('#solveRecursive').on('click', function () {
+        solveRecursive();
+    });
+    $('#entropy-button').on('click', function () {
+        toggleEntropy();
+    });
+    $('#checkFullErrors').on('click', function () {
+        checkFullErrors();
+    });
 }

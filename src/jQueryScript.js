@@ -1,3 +1,4 @@
+import $ from 'jquery';
 
 // Setup Controls
 let isSliderOpen = true;
@@ -97,7 +98,7 @@ function infoBoxSlider(viewNum, callback) {
     if (Math.abs(viewNum) > views.length) {
         return;
     }
-    console.log("Interacting with: " + viewNum);
+    // console.log("Interacting with: " + viewNum);
     // Close view
     if (isSliderOpen) {
         if (viewNum === 0 && !isTabletWidth() && !isMobileWidth()) {
@@ -169,7 +170,7 @@ function slideController(moveVal, callback) {
     }
     
     const targetViewNum = curViewNumber - moveVal;
-    console.log("Target: " + targetViewNum + ' = ' + curViewNumber + ' - ' + moveVal);
+    // console.log("Target: " + targetViewNum + ' = ' + curViewNumber + ' - ' + moveVal);
     
     if (targetViewNum > views.length/2 || targetViewNum < views.length/2 * -1) {
         return;
@@ -283,7 +284,17 @@ function navController() {
         
     });
 
-    $('#link').click(function (e) { 
+    $('#logo').on('click', function (e) { 
+        e.preventDefault();
+        
+        $('#link' + curViewNumber).removeClass('active-link');
+        $('#link').addClass('active-link');
+        $('html, body').animate({
+            scrollTop: $('#home').offset().top
+        }, 1);
+    });
+
+    $('#link').on('click', function (e) { 
         e.preventDefault();
         
         $('#link' + curViewNumber).removeClass('active-link');
@@ -320,6 +331,9 @@ function navController() {
                                     inMotion = false;
                                 });
                             }   
+                        } else if (curViewNumber == viewNum) {
+                            $('#link').removeClass('active-link');
+                            $('#link' + curViewNumber).addClass('active-link');
                         }
                     }
                 });

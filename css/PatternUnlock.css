@@ -1,0 +1,140 @@
+body {
+    /* background-color: #2F4858; */
+    /* background-color: black; */
+    padding: 0;
+    margin: 0;
+}
+
+#color-changer {
+    margin: 0;
+    padding: 0;
+    width: calc(100vw);
+    height: calc(100vh);
+
+    position: absolute;
+
+    display: grid;
+    grid-template-columns: repeat(var(--columns), 1fr);
+    grid-template-rows: repeat(var(--rows), 1fr);
+}
+
+.tile {
+    /* outline: 1px solid green; */
+    background-color: black;
+}
+
+.tile:hover {
+    border: 2px solid rgb(53, 23, 75);
+}
+
+#header {
+    /* color: white; */
+    color: black;
+    position: absolute;
+    top: 15vh;
+    left: calc(50% - 20vw);
+    transform: rotate(-15deg);
+    pointer-events: none;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 90vh;
+}
+
+.pattern-wrapper {
+    display: flex;
+    justify-content: center;
+    border: 3px solid black;
+    position: relative;
+    /* background-color: #F1962E; */
+    /* background-color: rgba(241, 150, 46, 0.2); */
+    background-color: white;
+    transition: 0.2s;
+    border-radius: 5px;
+    padding: 40px;
+    margin: 30px;
+    margin-bottom: 0;
+}
+
+svg {
+    overflow: visible;
+}
+
+.pattern-demo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10vh;
+    margin-bottom: 0;
+}
+
+.text {
+    z-index: 5;
+    pointer-events: none;
+    color: white;
+}
+
+.input-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+input {
+    text-align: center;
+    margin: auto;
+    background-color: white;
+    /* background-color: rgba(241, 150, 46, 0.2); */
+    border-radius: 3px;
+    padding: 10px;
+    border: 2px solid black;
+    transition: 0.2s;
+    outline: none;
+    color: black;
+}
+
+input:hover {
+    /* background-color: rgba(241, 150, 46, 0.7); */
+    color: black;
+}
+
+.dots {
+    position: absolute;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    column-gap: 77px;
+    row-gap: 77px;
+    top: 31px;
+}
+
+.outer-dot, .outer-input-dot {
+    width: 22px;
+    height: 22px;
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.inner-dot {
+    width: 12px;
+    height: 12px;
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 10px;
+    z-index: 5;
+}
+
+@media(max-width:1400px) {
+    #header {
+        transform: rotate(0deg);
+        text-align: center;
+
+        left: 50%;
+    }
+}

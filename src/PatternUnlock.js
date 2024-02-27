@@ -7,6 +7,10 @@ $(document).ready(function () {
     // buildPattern('124536987');
     // buildPattern('154984');
     // buildPattern('139719647349761284268');
+    // $('#hideWarning').on('click', function () {
+    //     $('.mobile-warning').css('display', 'none');
+    //     $('.mobile-warning-blur').css('filter', 'blur(0px)');
+    // });
 
     const dots = $('#input-dots');
     let path = 'M';

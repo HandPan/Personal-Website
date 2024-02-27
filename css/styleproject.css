@@ -44,17 +44,15 @@
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
-    /* width: 50%; */
+    width: 80%;
     /* background-image: linear-gradient(#a1afb8, #ffe1d5); */
     /* background-color: #a1afb8; */
     background: linear-gradient(to right, #6d544d, #5c7474);
+    border: 3px solid black;
     padding: 20px;
     z-index: 5;
     border-radius: 5px;
-    /* display: flex; */
-    /* align-items: center; */
-    /* justify-content: center; */
-    /* opacity: 0; */
+    font-weight: bold;
     display: none;
 
 

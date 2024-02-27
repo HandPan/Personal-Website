@@ -828,4 +828,7 @@ function createClickEvents() {
     $('#checkFullErrors').on('click', function () {
         checkFullErrors();
     });
+    $('#hideWarning').on('click', function () {
+        hideWarning();
+    });
 }
